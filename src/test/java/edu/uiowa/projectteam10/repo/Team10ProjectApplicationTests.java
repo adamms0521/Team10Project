@@ -1,4 +1,4 @@
-package edu.uiowa.projectteam10.Team10Project;
+package edu.uiowa.projectteam10.repo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
