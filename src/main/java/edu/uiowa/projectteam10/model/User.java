@@ -1,36 +1,26 @@
 package edu.uiowa.projectteam10.model;
 
-import javax.persistence.Entity;
+import org.hibernate.annotations.Entity;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.data.annotation.Id;
+
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
 
 
 @Entity
-@Table(name = "user")
 public class User {
+    public User(String name, String email, String password){
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="ID")
-    private Long id;
-    @Column(name="email")
-    private String email;
-    @Column(name="password")
-    private String password;
-    @Column(name="name")
+    private long id;
     private String name;
-    @Column(name="role")
-    private String role;
-
-    public Long getId(){
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String password;
+    private String email;
 
     public String getName() {
         return name;
@@ -40,18 +30,27 @@ public class User {
         this.name = name;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword(){
-        return password;
-    }
-    public void setPassword(String password){
-        this.password = password;
     }
 }
