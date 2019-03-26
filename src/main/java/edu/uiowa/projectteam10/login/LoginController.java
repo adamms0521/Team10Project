@@ -1,11 +1,9 @@
 package edu.uiowa.projectteam10.login;
 
-import javax.naming.Binding;
 import javax.validation.Valid;
 
 import edu.uiowa.projectteam10.Services.UserService;
 import edu.uiowa.projectteam10.converter.UsertoRegisterForm;
-import edu.uiowa.projectteam10.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,26 +38,19 @@ public class LoginController extends WebMvcConfigurerAdapter {
     public String homePage(){return "homePage";}
 
     @GetMapping("/login")
-    public String showForm(LoginForm loginForm) {
+    public String login(Model model) {
+        model.addAttribute("loginForm", new LoginForm());
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginPost(Model model, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String loginPost(@Valid LoginForm loginForm, BindingResult bindingResult){
+        if(bindingResult.hasErrors() || !userService.userExists(loginForm)){
             return "login";
         }
         return "home";
     }
 
-    @PostMapping("/")
-    public String validateLoginInfo(Model model, @Valid LoginForm loginForm, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-        model.addAttribute("user", loginForm.getuserName());
-        return "home";
-    }
 
     @GetMapping("/registration")
     public String register(Model model) {
@@ -68,16 +59,11 @@ public class LoginController extends WebMvcConfigurerAdapter {
     }
 
     @PostMapping("/registration")
-    public String addUser(Model model, @Valid RegisterForm registerForm, BindingResult bindingResult) {
+    public String addUser(@Valid RegisterForm registerForm, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "registration";
         }
-        User newUser = userService.saveForm(registerForm);
+        userService.saveForm(registerForm);
         return "home";
-    }
-
-    @GetMapping("/error")
-    public String error(){
-        return "homePage";
     }
 }

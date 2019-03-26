@@ -1,6 +1,7 @@
 package edu.uiowa.projectteam10.Services;
 
 import edu.uiowa.projectteam10.converter.RegisterFormtoUser;
+import edu.uiowa.projectteam10.login.LoginForm;
 import edu.uiowa.projectteam10.login.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 import edu.uiowa.projectteam10.repository.UserRepository;
@@ -20,18 +21,21 @@ public class UserServiceImp implements UserService {
         this.registerFormToUser = registerFormtoUser;
     }
 
-
+    public boolean userExists(LoginForm loginForm){
+        if(loginForm.getPassword().equals(userRepository.findPasswordbyName(loginForm.getuserName())) && userRepository.exists(loginForm.getuserName())){
+            return true;
+        }
+        return false;
+    }
     @Override
     public User save(User user) {
         userRepository.save(user);
         return user;
     }
 
-
     @Override
     public User saveForm(RegisterForm registerForm) {
         User savedUser = save(registerFormToUser.convert(registerForm));
-
         System.out.println("Saved User Id: " + savedUser.getName());
         return savedUser;
     }

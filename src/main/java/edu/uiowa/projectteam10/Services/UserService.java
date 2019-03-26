@@ -1,6 +1,7 @@
 package edu.uiowa.projectteam10.Services;
 
 
+import edu.uiowa.projectteam10.login.LoginForm;
 import edu.uiowa.projectteam10.login.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 
@@ -12,5 +13,6 @@ public interface UserService {
 
     User saveForm(RegisterForm registerForm);
 
+    boolean userExists(LoginForm loginForm);
 
 }

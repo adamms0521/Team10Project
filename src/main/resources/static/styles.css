@@ -1,7 +1,7 @@
 body{
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    background-color: #272B30;
-    color: #aaa;
+    background-color: white;
+    color: black;
     text-align: center;
 }
 h1 {
@@ -17,4 +17,8 @@ p {
 form{
     padding-left: 100px;
     padding-right: 100px;
+}
+
+login-form{
+
 }
