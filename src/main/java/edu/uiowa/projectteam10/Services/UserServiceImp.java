@@ -21,12 +21,29 @@ public class UserServiceImp implements UserService {
         this.registerFormToUser = registerFormtoUser;
     }
 
-    public boolean userExists(LoginForm loginForm){
+    public boolean userExistsPasswordCorrect(LoginForm loginForm){
         if(loginForm.getPassword().equals(userRepository.findPasswordbyName(loginForm.getuserName())) && userRepository.exists(loginForm.getuserName())){
             return true;
         }
         return false;
     }
+
+    @Override
+    public boolean userExists(RegisterForm registerForm) {
+        if(userRepository.exists(registerForm.getUserName())){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean passwordsMatch(RegisterForm registerForm) {
+        if(registerForm.getPassword().equals(registerForm.getReenterpassword())){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public User save(User user) {
         userRepository.save(user);

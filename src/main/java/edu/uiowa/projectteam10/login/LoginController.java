@@ -45,7 +45,7 @@ public class LoginController extends WebMvcConfigurerAdapter {
 
     @PostMapping("/login")
     public String loginPost(@Valid LoginForm loginForm, BindingResult bindingResult){
-        if(bindingResult.hasErrors() || !userService.userExists(loginForm)){
+        if(bindingResult.hasErrors() || !userService.userExistsPasswordCorrect(loginForm)){
             return "login";
         }
         return "home";
@@ -60,7 +60,7 @@ public class LoginController extends WebMvcConfigurerAdapter {
 
     @PostMapping("/registration")
     public String addUser(@Valid RegisterForm registerForm, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
+        if(bindingResult.hasErrors() || userService.userExists(registerForm) || !userService.passwordsMatch(registerForm)){
             return "registration";
         }
         userService.saveForm(registerForm);

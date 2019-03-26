@@ -13,6 +13,10 @@ public interface UserService {
 
     User saveForm(RegisterForm registerForm);
 
-    boolean userExists(LoginForm loginForm);
+    boolean userExistsPasswordCorrect(LoginForm loginForm);
+
+    boolean userExists(RegisterForm registerForm);
+
+    boolean passwordsMatch(RegisterForm registerForm);
 
 }
