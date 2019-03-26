@@ -2,6 +2,7 @@ package edu.uiowa.projectteam10.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -11,10 +12,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    @NotNull
     private String name;
     @Column
+    @NotNull
     private String password;
     @Column
+    @NotNull
     private String role;
 
     public String getName() {

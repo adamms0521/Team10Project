@@ -1,16 +1,16 @@
 package edu.uiowa.projectteam10.login;
 
 
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
+
 
 public class RegisterForm {
-    @NotNull
+    @NotBlank(message = "Need a UserName")
     private String userName;
-    @NotNull
+    @NotBlank(message = "Enter a Password")
     private String password;
-    @NotNull
+    @NotBlank(message = "Re-enter a Password")
     private String reenterpassword;
-    @NotNull
     private String role;
 
     public String getUserName() {

@@ -10,12 +10,18 @@
     <title>Login</title>
 <body>
 <div class = "login-form">
-    <form action="#" th:action="@{/login}" th:object="${loginForm}" method="post"><h2 class="text-center">Login</h2>
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <!--@thymesVar id="loginForm" type="edu.uiowa.projectteam10.login"-->
+    <!--@thymesVar id="userName" type="String"-->
+    <!--@thymesVar id="password" type="String"-->
+    <!--*/-->
+    <form action="#" th:action="@{/login}" th:object="${loginForm}"
+          method="post"><h2 class="text-center">Login</h2>
+        <div><label> User Name : <input type="text" name="userName"/> </label></div>
+        <span style="color: red" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
         <div><label> Password: <input type="password" name="password"/> </label></div>
+        <span style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
         <div><input type="submit" value="Sign In"/></div>
     </form>
-    <a href="registration">Register</a>
     <a href="homePage">Cancel</a>
 </div>
 </body>

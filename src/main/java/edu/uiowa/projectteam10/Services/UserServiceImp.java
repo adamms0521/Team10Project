@@ -29,8 +29,8 @@ public class UserServiceImp implements UserService {
 
 
     @Override
-    public User saveForm(RegisterForm RegisterForm) {
-        User savedUser = save(registerFormToUser.convert(RegisterForm));
+    public User saveForm(RegisterForm registerForm) {
+        User savedUser = save(registerFormToUser.convert(registerForm));
 
         System.out.println("Saved User Id: " + savedUser.getName());
         return savedUser;

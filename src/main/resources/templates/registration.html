@@ -13,12 +13,15 @@
     <form action="#" th:action="@{/registration}" th:object="${registerForm}"
           method="post"><h2 class="text-center">Registration</h2>
         <div><label> User Name : <input type="text" name="userName"/> </label></div>
+        <span style="color: red" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
         <div><label> Password: <input type="password" name="password"/> </label></div>
+        <span style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
         <div><label> Re-enter Password: <input type="password" name="reenterpassword"/> </label></div>
-        <select name="role">
+        <span style="color: red" th:if="${#fields.hasErrors('reenterpassword')}" th:errors="*{reenterpassword}"></span>
+        <div><select name="role">
             <option value="Passenger">Passenger</option>
             <option value="Driver">Driver</option>
-        </select>
+        </select></div>
         <div><input type="submit" value="Sign Up"/></div>
     </form>
     <a href="homePage">Cancel</a>

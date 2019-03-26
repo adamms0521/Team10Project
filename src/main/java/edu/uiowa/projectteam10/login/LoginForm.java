@@ -1,16 +1,13 @@
 package edu.uiowa.projectteam10.login;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
+
 
 public class LoginForm {
-    @NotNull
-    @Size(min = 2, max = 30)
+    @NotBlank(message = "Enter a UserName")
     private String userName;
 
-    @NotNull
-    @Min(5)
+    @NotBlank(message = "Enter a Password")
     private String password;
 
     public String getuserName() {

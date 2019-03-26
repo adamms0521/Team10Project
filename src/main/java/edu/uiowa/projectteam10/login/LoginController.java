@@ -1,11 +1,11 @@
 package edu.uiowa.projectteam10.login;
 
+import javax.naming.Binding;
 import javax.validation.Valid;
 
 import edu.uiowa.projectteam10.Services.UserService;
 import edu.uiowa.projectteam10.converter.UsertoRegisterForm;
 import edu.uiowa.projectteam10.model.User;
-import edu.uiowa.projectteam10.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +42,14 @@ public class LoginController extends WebMvcConfigurerAdapter {
     @GetMapping("/login")
     public String showForm(LoginForm loginForm) {
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String loginPost(Model model, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "login";
+        }
+        return "home";
     }
 
     @PostMapping("/")
