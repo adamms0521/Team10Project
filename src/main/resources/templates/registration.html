@@ -13,6 +13,8 @@
 <div class = "registration-form">
     <form action="#" th:action="@{/registration}" th:object="${registerForm}"
           method="post"><h2 class="text-center">Registration</h2>
+        <div><label> Name : <input type="text" name="name"/> </label></div>
+        <span style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         <div><label> User Name : <input type="text" name="userName"/> </label></div>
         <span style="color: red" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
         <div><label> Password: <input type="password" name="password"/> </label></div>

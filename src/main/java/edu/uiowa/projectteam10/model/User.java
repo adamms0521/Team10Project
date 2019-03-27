@@ -10,18 +10,21 @@ public class User {
 
     @Id
     @NotNull
-    private String name;
+    private String username;
     @NotNull
     private String password;
     @NotNull
     private String role;
 
-    public String getName() {
-        return name;
+    @NotNull
+    private String name;
+
+    public String getUserName() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String name) {
+        this.username = name;
     }
 
     public String getPassword() {
@@ -39,6 +42,12 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

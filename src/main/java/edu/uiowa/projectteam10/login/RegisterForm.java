@@ -5,10 +5,14 @@ import org.hibernate.validator.constraints.NotBlank;
 
 
 public class RegisterForm {
+
+    @NotBlank(message = "Need a Name")
+    private String name;
     @NotBlank(message = "Need a UserName")
     private String userName;
     @NotBlank(message = "Enter a Password")
     private String password;
+
     @NotBlank(message = "Re-enter a Password")
     private String reenterpassword;
     private String role;
@@ -29,12 +33,12 @@ public class RegisterForm {
         this.password = password;
     }
 
-    public String getReenterpassword() {
-        return reenterpassword;
-    }
-
     public void setReenterpassword(String reenterpassword) {
         this.reenterpassword = reenterpassword;
+    }
+
+    public String getReenterpassword() {
+        return reenterpassword;
     }
 
     public String getRole() {
@@ -44,5 +48,11 @@ public class RegisterForm {
     public void setRole(String role) {
         this.role = role;
     }
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

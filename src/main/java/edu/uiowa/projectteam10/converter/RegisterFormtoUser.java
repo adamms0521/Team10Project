@@ -11,7 +11,8 @@ public class RegisterFormtoUser implements Converter<RegisterForm, User> {
     @Override
     public User convert(RegisterForm registerForm) {
         User user = new User();
-        user.setName(registerForm.getUserName());
+        user.setName(registerForm.getName());
+        user.setUserName(registerForm.getUserName());
         user.setPassword(registerForm.getPassword());
         user.setRole(registerForm.getRole());
         return user;
