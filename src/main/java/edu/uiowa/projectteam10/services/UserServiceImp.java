@@ -1,4 +1,4 @@
-package edu.uiowa.projectteam10.Services;
+package edu.uiowa.projectteam10.services;
 
 import edu.uiowa.projectteam10.converter.RegisterFormtoUser;
 import edu.uiowa.projectteam10.login.LoginForm;

@@ -2,7 +2,7 @@ package edu.uiowa.projectteam10.login;
 
 import javax.validation.Valid;
 
-import edu.uiowa.projectteam10.Services.UserService;
+import edu.uiowa.projectteam10.services.UserService;
 import edu.uiowa.projectteam10.converter.UsertoRegisterForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,6 +64,11 @@ public class LoginController extends WebMvcConfigurerAdapter {
             return "registration";
         }
         userService.saveForm(registerForm);
+        return "home";
+    }
+
+    @GetMapping("/home")
+    public String goHome(){
         return "home";
     }
 }
