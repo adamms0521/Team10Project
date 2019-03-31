@@ -1,8 +1,8 @@
 package edu.uiowa.projectteam10.services;
 
 
-import edu.uiowa.projectteam10.login.LoginForm;
-import edu.uiowa.projectteam10.login.RegisterForm;
+import edu.uiowa.projectteam10.forms.LoginForm;
+import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 
 

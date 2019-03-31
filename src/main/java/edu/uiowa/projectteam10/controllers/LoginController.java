@@ -1,7 +1,9 @@
-package edu.uiowa.projectteam10.login;
+package edu.uiowa.projectteam10.controllers;
 
 import javax.validation.Valid;
 
+import edu.uiowa.projectteam10.forms.LoginForm;
+import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.services.UserService;
 import edu.uiowa.projectteam10.converter.UsertoRegisterForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +45,7 @@ public class LoginController extends WebMvcConfigurerAdapter {
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login*")
     public String loginPost(@Valid LoginForm loginForm, BindingResult bindingResult){
         if(bindingResult.hasErrors() || !userService.userExistsPasswordCorrect(loginForm)){
             return "login";
@@ -71,4 +73,9 @@ public class LoginController extends WebMvcConfigurerAdapter {
     public String goHome(){
         return "home";
     }
+
+    @GetMapping("/admin")
+    public String adminPage(){return "admin"; }
+
+
 }

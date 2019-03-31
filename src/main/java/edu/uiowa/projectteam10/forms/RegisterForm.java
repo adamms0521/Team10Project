@@ -1,7 +1,9 @@
-package edu.uiowa.projectteam10.login;
+package edu.uiowa.projectteam10.forms;
 
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Min;
 
 
 public class RegisterForm {
@@ -16,6 +18,8 @@ public class RegisterForm {
     @NotBlank(message = "Re-enter a Password")
     private String reenterpassword;
     private String role;
+
+
 
     public String getUserName() {
         return userName;

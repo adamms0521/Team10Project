@@ -1,6 +1,6 @@
 package edu.uiowa.projectteam10.converter;
 
-import edu.uiowa.projectteam10.login.RegisterForm;
+import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

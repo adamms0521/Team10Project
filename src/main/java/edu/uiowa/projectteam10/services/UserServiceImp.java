@@ -1,8 +1,8 @@
 package edu.uiowa.projectteam10.services;
 
 import edu.uiowa.projectteam10.converter.RegisterFormtoUser;
-import edu.uiowa.projectteam10.login.LoginForm;
-import edu.uiowa.projectteam10.login.RegisterForm;
+import edu.uiowa.projectteam10.forms.LoginForm;
+import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 import edu.uiowa.projectteam10.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ public class UserServiceImp implements UserService {
     private UserRepository userRepository;
     private RegisterFormtoUser registerFormToUser;
 
-
     @Autowired
     public UserServiceImp(UserRepository userRepository, RegisterFormtoUser registerFormtoUser) {
         this.userRepository = userRepository;
@@ -22,7 +21,7 @@ public class UserServiceImp implements UserService {
     }
 
     public boolean userExistsPasswordCorrect(LoginForm loginForm){
-        if(loginForm.getPassword().equals(userRepository.findPasswordbyName(loginForm.getuserName())) && userRepository.exists(loginForm.getuserName())){
+        if(registerFormToUser.getPasswordEncoder().encode(loginForm.getPassword()).equals(userRepository.findPasswordbyName(loginForm.getuserName())) && userRepository.exists(loginForm.getuserName())){
             return true;
         }
         return false;

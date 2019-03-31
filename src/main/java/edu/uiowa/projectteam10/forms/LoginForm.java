@@ -1,6 +1,8 @@
-package edu.uiowa.projectteam10.login;
+package edu.uiowa.projectteam10.forms;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 public class LoginForm {
