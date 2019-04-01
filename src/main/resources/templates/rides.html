@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,7 +7,20 @@
     <title>Rides</title>
 </head>
 <body>
-<h2>Admin HomePage</h2>
-    <h1>We are at the ride page</h1>
+<h1>Available Rides</h1>
+<table>
+    <tr>
+        <td>Starting Location</td>
+        <td>Ending Location</td>
+        <td>Starting Time</td>
+        <td>Ending Time</td>
+    </tr>
+    <tr th:each="ride: ${availableRides}">
+        <td th:text="${ride.startPlace}">Starting Location</td>
+        <td th:text="${ride.endPlace}">Ending Location</td>
+        <td th:text="${ride.startTime}">Starting Time</td>
+        <td th:text="${ride.endTime}">Ending Time</td>
+    </tr>
+</table>
 </body>
 </html>

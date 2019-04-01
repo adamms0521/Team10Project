@@ -31,6 +31,7 @@ public class RidesServiceImp implements RidesService {
         return savedRide;
     }
 
+    @Override
     public List<Rides> getRides(){
         Iterable<Rides> rides = this.ridesRepository.findAll();
         List<Rides> allrides = new ArrayList<>();

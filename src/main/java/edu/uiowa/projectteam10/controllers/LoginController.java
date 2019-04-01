@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
+import edu.uiowa.projectteam10.model.Rides;
+import edu.uiowa.projectteam10.services.RidesService;
 import edu.uiowa.projectteam10.services.UserService;
 import edu.uiowa.projectteam10.converter.UsertoRegisterForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.util.List;
 
 @Controller
 public class LoginController extends WebMvcConfigurerAdapter {
@@ -77,8 +81,13 @@ public class LoginController extends WebMvcConfigurerAdapter {
     @GetMapping("/admin")
     public String adminPage(){return "admin"; }
 
+    @Autowired
+    private RidesService rideService;
+
     @GetMapping("/rides")
-    public String ridesPage(){
+    public String ridesPage(Model model){
+        List<Rides> rides = this.rideService.getRides();
+        model.addAttribute("availableRides", rides);
         return "rides";
     }
 }
