@@ -6,9 +6,7 @@ import edu.uiowa.projectteam10.model.Rides;
 import edu.uiowa.projectteam10.model.User;
 
 public interface RidesService {
-
     Rides save(Rides rides);
-
 
     Rides saveForm(CreateRideForm rideForm);
 }

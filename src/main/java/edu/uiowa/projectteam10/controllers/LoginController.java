@@ -77,5 +77,8 @@ public class LoginController extends WebMvcConfigurerAdapter {
     @GetMapping("/admin")
     public String adminPage(){return "admin"; }
 
-
+    @GetMapping("/rides")
+    public String ridesPage(){
+        return "rides";
+    }
 }

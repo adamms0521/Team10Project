@@ -7,6 +7,9 @@ import edu.uiowa.projectteam10.repository.RidesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class RidesServiceImp implements RidesService {
     private RidesRepository ridesRepository;
@@ -26,5 +29,14 @@ public class RidesServiceImp implements RidesService {
     public Rides saveForm(CreateRideForm rideForm) {
         Rides savedRide = save(createRideFormtoRide.convert(rideForm));
         return savedRide;
+    }
+
+    public List<Rides> getRides(){
+        Iterable<Rides> rides = this.ridesRepository.findAll();
+        List<Rides> allrides = new ArrayList<>();
+        for(Rides ride: rides){
+            allrides.add(ride);
+        }
+        return allrides;
     }
 }
