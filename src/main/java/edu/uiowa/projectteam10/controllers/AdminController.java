@@ -20,6 +20,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
     public void setRidesService(RidesService ridesService) {
         this.ridesService = ridesService;
     }
+
     @GetMapping("/createride")
     public String createRide(Model model){
         model.addAttribute("createrideForm", new CreateRideForm());

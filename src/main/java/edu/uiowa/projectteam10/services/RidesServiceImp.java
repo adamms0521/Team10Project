@@ -19,6 +19,7 @@ public class RidesServiceImp implements RidesService {
         this.ridesRepository = ridesRepository;
         this.createRideFormtoRide = createRideFormtoRide;
     }
+
     @Override
     public Rides save(Rides rides) {
         ridesRepository.save(rides);
