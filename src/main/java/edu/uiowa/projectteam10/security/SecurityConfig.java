@@ -40,18 +40,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/homePage", "/registration", "/admin", "/createride", "/rides").permitAll()
+                .antMatchers("/resources/**" ,"/", "/home", "/homePage", "/registration", "/login", "/admin", "/createride", "/rides").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginProcessingUrl("/loginPost")
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
-           //     .successHandler(authenticationSuccessHandler())
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .permitAll();
+           //     .successHandler(authenticationSuccessHandler())
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager customAuthenticationManager() throws Exception {
+        return authenticationManager();
     }
 }

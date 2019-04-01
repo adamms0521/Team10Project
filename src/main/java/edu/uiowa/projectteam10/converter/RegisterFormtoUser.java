@@ -9,21 +9,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RegisterFormtoUser implements Converter<RegisterForm, User> {
-    public PasswordEncoder getPasswordEncoder() {
-        return passwordEncoder;
-    }
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Override
     public User convert(RegisterForm registerForm) {
-        User user = new User();
-        user.setName(registerForm.getName());
-        user.setUserName(registerForm.getUserName());
-      //  user.setPassword(registerForm.getPassword());
-        user.setPassword(passwordEncoder.encode(registerForm.getPassword()));
-        user.setRole(registerForm.getRole());
-        return user;
+//        User user = new User();
+//        user.setName(registerForm.getName());
+//        user.setUserName(registerForm.getUserName());
+//      //  user.setPassword(registerForm.getPassword());
+//   //     user.setPassword(passwordEncoder.encode(registerForm.getPassword()));
+//        user.setRole(registerForm.getRole());
+//        return user;
+        return null;
     }
 }

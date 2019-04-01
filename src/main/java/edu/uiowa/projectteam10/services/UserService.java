@@ -19,4 +19,5 @@ public interface UserService {
 
     boolean passwordsMatch(RegisterForm registerForm);
 
+    String getName(User user);
 }
