@@ -77,6 +77,9 @@ public class LoginController extends WebMvcConfigurerAdapter {
         return "home";
     }
 
+    @GetMapping("/driver")
+    public String driverPage(){return "driver"; }
+
     @GetMapping("/admin")
     public String adminPage(){return "admin"; }
 
