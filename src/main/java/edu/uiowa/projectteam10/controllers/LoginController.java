@@ -4,11 +4,10 @@ import javax.validation.Valid;
 
 import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
-import edu.uiowa.projectteam10.model.Rides;
 import edu.uiowa.projectteam10.model.User;
 import edu.uiowa.projectteam10.services.RidesService;
+import edu.uiowa.projectteam10.services.RouteService;
 import edu.uiowa.projectteam10.services.UserService;
-import edu.uiowa.projectteam10.converter.UsertoRegisterForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -21,16 +20,15 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 public class LoginController extends WebMvcConfigurerAdapter {
     @Autowired
     private UserService userService;
     @Autowired
-    private UsertoRegisterForm usertoRegisterForm;
-    @Autowired
     private RidesService rideService;
+    @Autowired
+    private RouteService routeService;
     private User currentUser;
 
     @Override
@@ -82,8 +80,10 @@ public class LoginController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/rides")
     public String ridesPage(Model model){
-        List<Rides> rides = this.rideService.getRides();
-        model.addAttribute("availableRides", rides);
+//        List<Ride> rides = this.rideService.getRides();
+//        model.addAttribute("availableRides", rides);
+//        return "rides";
+        routeService.getRouteInfo();
         return "rides";
     }
 }

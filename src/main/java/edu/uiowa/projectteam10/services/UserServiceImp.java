@@ -1,6 +1,5 @@
 package edu.uiowa.projectteam10.services;
 
-import edu.uiowa.projectteam10.converter.RegisterFormtoUser;
 import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
@@ -13,12 +12,10 @@ import org.springframework.stereotype.Service;
 public class UserServiceImp implements UserService {
     private PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
-    private RegisterFormtoUser registerFormToUser;
 
     @Autowired
-    public UserServiceImp(UserRepository userRepository, RegisterFormtoUser registerFormtoUser, PasswordEncoder passwordEncoder) {
+    public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.registerFormToUser = registerFormtoUser;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -63,7 +60,6 @@ public class UserServiceImp implements UserService {
         User user = new User();
         user.setName(registerForm.getName());
         user.setUserName(registerForm.getUserName());
-        //  user.setPassword(registerForm.getPassword());
         user.setPassword(passwordEncoder.encode(registerForm.getPassword()));
         user.setRole(registerForm.getRole());
         save(user);
