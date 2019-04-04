@@ -68,6 +68,9 @@ public class LoginController extends WebMvcConfigurerAdapter {
         return "home";
     }
 
+    @GetMapping("/driver")
+    public String driverPage(){return "driver"; }
+
     @GetMapping("/home")
     public String goHome(Model model, Principal principal){
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
