@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
+import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.model.User;
 import edu.uiowa.projectteam10.services.RidesService;
 import edu.uiowa.projectteam10.services.RouteService;
@@ -20,6 +21,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.security.Principal;
+import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class LoginController extends WebMvcConfigurerAdapter {
@@ -83,10 +86,12 @@ public class LoginController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/rides")
     public String ridesPage(Model model){
-//        List<Ride> rides = this.rideService.getRides();
-//        model.addAttribute("availableRides", rides);
-//        return "rides";
-        routeService.getRouteInfo();
+        List<Ride> rides = this.rideService.getRides();
+        model.addAttribute("availableRides", rides);
         return "rides";
+    }
+    @GetMapping("/passenger")
+    public String passengerPage(){
+        return "passenger";
     }
 }

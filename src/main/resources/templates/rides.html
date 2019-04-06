@@ -10,13 +10,13 @@
 <h1>Available Rides</h1>
 <table>
     <tr>
-        <td>Route ID</td>
-        <td>Starting Time</td>
-        <td>Ending Time</td>
+        <td>Route Name</td>
+        <td>Start Time</td>
+        <td>End Time</td>
         <td>Driver</td>
     </tr>
     <tr th:each="ride: ${availableRides}">
-        <td th:text="${ride.routeId}">Route ID</td>
+        <td th:text="${ride.routeName}">Route Name</td>
         <td th:text="${ride.startTime}">Starting Time</td>
         <td th:text="${ride.endTime}">Ending Time</td>
         <td th:text="${ride.driver}">Driver</td>

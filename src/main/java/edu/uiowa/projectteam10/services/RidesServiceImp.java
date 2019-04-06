@@ -6,6 +6,7 @@ import edu.uiowa.projectteam10.repository.RidesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -37,14 +38,14 @@ public class RidesServiceImp implements RidesService {
         Iterable<Ride> rides = this.ridesRepository.findAll();
         List<Ride> allrides = new ArrayList<>();
         for(Ride ride: rides){
-            allrides.add(ride);
+            try {
+                if (!ride.getDriver().isEmpty()) {
+                    allrides.add(ride);
+                }
+            } catch (NullPointerException e){
+                e.getStackTrace();
+            }
         }
         return allrides;
-    }
-
-    @Override
-    public Iterable<Ride> getRideInfo() {
-    //    return ridesRepository.getRideInfo();
-        return null;
     }
 }

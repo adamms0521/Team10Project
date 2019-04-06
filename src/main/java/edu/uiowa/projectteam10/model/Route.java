@@ -25,9 +25,6 @@ public class Route {
     @NotNull
     private Double distance;
 
-    @ManyToOne(cascade={CascadeType.ALL})
-    private Ride ride;
-
     public String getRouteName() {
         return routeName;
     }

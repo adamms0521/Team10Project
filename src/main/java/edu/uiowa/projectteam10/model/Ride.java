@@ -1,7 +1,6 @@
 package edu.uiowa.projectteam10.model;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,9 +11,6 @@ public class Ride {
     @Id
     @GeneratedValue
     private Integer rideID;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Route> routes;
 
     private String driver;
 
