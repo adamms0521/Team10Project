@@ -19,6 +19,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -81,8 +83,8 @@ public class LoginController extends WebMvcConfigurerAdapter {
                 .getAuthentication()
                 .getPrincipal();*/
         return "driver";
-
     }
+
     @GetMapping("/home")
     public String goHome(Model model, Principal principal){
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
@@ -104,5 +106,8 @@ public class LoginController extends WebMvcConfigurerAdapter {
         return "passenger";
     }
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    public  String currentUserName(Authentication authentication){
+        return authentication.getName(); }
 
 }
