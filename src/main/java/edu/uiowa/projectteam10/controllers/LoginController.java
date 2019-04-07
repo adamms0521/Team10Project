@@ -77,12 +77,19 @@ public class LoginController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/driver")
     public String driverPage(Model model){
-        List<Ride> rides = this.rideService.getRides();
+        List<Ride> rides = this.rideService.getEmptyRides();
         model.addAttribute("unselectRides", rides);
         /*UserDetails userLogged = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();*/
         return "driver";
+    }
+
+    @RequestMapping("/driver")
+    public String update(Model model, String routeName){
+        List<Ride> rides = this.rideService.getEmptyRides();
+        model.addAttribute("rides",rides);
+        return "rides";
     }
 
     @GetMapping("/home")
@@ -109,5 +116,7 @@ public class LoginController extends WebMvcConfigurerAdapter {
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     public  String currentUserName(Authentication authentication){
         return authentication.getName(); }
+
+
 
 }
