@@ -11,29 +11,21 @@
 </head>
 <body>
     <h2>Driver Information</h2>
-    <a href="homePage">Back</a>
-     </div>
-             <div class="Route">
-            <div class="col-md-12">
-               <div class="alert alert-success">
-                   <table border="2" align="center">
-                       <tr>
-                           <td>routeName</td>
-                           <td>startPlace</td>
-                           <td>endPlace</td>
-                           <td>distance</td>
-                       </tr>
-                       <tr th:each ="i:${info}">
-                           <td th:text = "${i.routeName}"></td>
-                           <td th:text = "${i.startPlace}"></td>
-                           <td th:text = "${i.endPlace}"></td>
-                           <td th:text = "${i.distance}"></td>
-                       </tr>
-                   </table>
-               </div>
-            </div>
-
-        </div>
+    <table border="2" align="center">
+        <tr>
+            <td>routeName</td>
+            <td>startPlace</td>
+            <td>endPlace</td>
+            <td>distance</td>
+        </tr>
+        <tr th:each ="i:${rides}">
+            <td th:text = "${i.routeName}"></td>
+            <td th:text = "${i.startPlace}"></td>
+            <td th:text = "${i.endPlace}"></td>
+            <td th:text = "${i.distance}"></td>
+        </tr>
+    </table>
+<a href="homePage">Back</a>
 </body>
 
 </html>
