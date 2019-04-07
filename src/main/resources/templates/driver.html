@@ -17,14 +17,17 @@
             <td>startPlace</td>
             <td>endPlace</td>
             <td>distance</td>
+            <td>driver</td>
         </tr>
-        <tr th:each ="i:${rides}">
+        <tr th:each ="i:${availableRides}">
             <td th:text = "${i.routeName}"></td>
             <td th:text = "${i.startPlace}"></td>
             <td th:text = "${i.endPlace}"></td>
             <td th:text = "${i.distance}"></td>
+
         </tr>
     </table>
+
 <a href="homePage">Back</a>
 </body>
 

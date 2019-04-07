@@ -11,6 +11,8 @@ import edu.uiowa.projectteam10.services.RouteService;
 import edu.uiowa.projectteam10.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -72,7 +74,12 @@ public class LoginController extends WebMvcConfigurerAdapter {
     }
 
     @GetMapping("/driver")
-    public String driverPage(){return "driver"; }
+    public String driverPage(){
+        UserDetails currentUser = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+        return "driver";
+    }
 
     @GetMapping("/home")
     public String goHome(Model model, Principal principal){
