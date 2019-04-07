@@ -74,13 +74,15 @@ public class LoginController extends WebMvcConfigurerAdapter {
     }
 
     @GetMapping("/driver")
-    public String driverPage(){
-        UserDetails currentUser = (UserDetails) SecurityContextHolder.getContext()
+    public String driverPage(Model model){
+        List<Ride> rides = this.rideService.getRides();
+        model.addAttribute("unselectRides", rides);
+        /*UserDetails userLogged = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication()
-                .getPrincipal();
+                .getPrincipal();*/
         return "driver";
-    }
 
+    }
     @GetMapping("/home")
     public String goHome(Model model, Principal principal){
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
@@ -101,4 +103,6 @@ public class LoginController extends WebMvcConfigurerAdapter {
     public String passengerPage(){
         return "passenger";
     }
+
+
 }

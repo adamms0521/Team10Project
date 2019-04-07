@@ -11,5 +11,9 @@ public interface RidesService {
     Ride saveForm(CreateRideForm rideForm);
 
     List<Ride> getRides();
+
+    List<Ride> getEmptyRides();
+
+
 }
 

@@ -17,9 +17,9 @@
             <td>startPlace</td>
             <td>endPlace</td>
             <td>distance</td>
-            <td>driver</td>
         </tr>
-        <tr th:each ="i:${availableRides}">
+        <tr th:each ="i:${unselectRides}">
+            <td><input type="checkbox" /></td>
             <td th:text = "${i.routeName}"></td>
             <td th:text = "${i.startPlace}"></td>
             <td th:text = "${i.endPlace}"></td>

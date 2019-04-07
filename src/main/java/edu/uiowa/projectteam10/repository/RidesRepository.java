@@ -11,6 +11,4 @@ import java.util.Collection;
 import java.util.List;
 
 public interface RidesRepository extends JpaRepository<Ride, Integer> {
-    @Query("SELECT * FROM rides WHERE driver is not NULL")
-    String ridesInfo();
 }
