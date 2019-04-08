@@ -6,7 +6,6 @@ import edu.uiowa.projectteam10.repository.RidesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -18,9 +17,9 @@ public class RidesServiceImp implements RidesService {
     }
 
     @Override
-    public Ride save(Ride ride) {
-        ridesRepository.save(ride);
-        return ride;
+    public Ride save(Ride rides) {
+        ridesRepository.save(rides);
+        return rides;
     }
 
     @Override
