@@ -12,6 +12,33 @@ public class Van {
 
     private String driverName;
 
+    @ManyToOne
+    private Ride ride;
+
     @OneToMany(fetch = FetchType.EAGER,mappedBy="van",cascade = CascadeType.ALL)
     private List<Passengers> passengers;
+
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+
+    public Ride getRide() {
+        return ride;
+    }
+
+    public void setRide(Ride ride) {
+        this.ride = ride;
+    }
+
+    public List<Passengers> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passengers> passengers) {
+        this.passengers = passengers;
+    }
 }

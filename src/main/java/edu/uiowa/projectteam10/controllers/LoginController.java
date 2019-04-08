@@ -28,8 +28,6 @@ import java.util.List;
 public class LoginController extends WebMvcConfigurerAdapter {
     @Autowired
     private UserService userService;
-    @Autowired
-    private RouteService routeService;
     private User currentUser;
 
     @Override
