@@ -1,12 +1,17 @@
 package edu.uiowa.projectteam10.model;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.ui.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.security.Principal;
 
 
 @Entity(name = "user")
-public class User {
+public class
+
+User {
 
     @Id
     @NotNull
@@ -50,4 +55,9 @@ public class User {
         this.name = name;
     }
 
+    public String user(Model model, Principal principal){
+        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+        model.addAttribute("username", name);
+        return "user";
+    }
 }

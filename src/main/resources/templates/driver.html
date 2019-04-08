@@ -11,7 +11,26 @@
 </head>
 <body>
     <h2>Driver Information</h2>
-    <a href="homePage">Back</a>
+    <table border="2" align="center">
+        <tr>
+            <td>routeName</td>
+            <td>startPlace</td>
+            <td>endPlace</td>
+            <td>distance</td>
+        </tr>
+        <tr>
+        </tr>
+        <tr th:each ="i:${unselectRides}">
+            <td><input type="radio" name="diverPick" value="${i.routeName}" /></td>
+            <td th:text = "${i.routeName}"></td>
+            <td th:text = "${i.startPlace}"></td>
+            <td th:text = "${i.endPlace}"></td>
+            <td th:text = "${i.distance}"></td>
+        </tr>
+    </table>
+    <div align="center"><input type="submit" value="Submit"/></div>
+<a href="homePage">Back</a>
+
 </body>
 
 </html>

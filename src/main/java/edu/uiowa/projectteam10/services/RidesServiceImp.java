@@ -48,4 +48,20 @@ public class RidesServiceImp implements RidesService {
         }
         return allrides;
     }
+
+    @Override
+    public List<Ride> getEmptyRides(){
+        Iterable<Ride> rides = this.ridesRepository.findAll();
+        List<Ride> allrides = new ArrayList<>();
+        for(Ride ride: rides){
+            try {
+                if (ride.getDriver().isEmpty()) {
+                    allrides.add(ride);
+                }
+            } catch (NullPointerException e){
+                e.getStackTrace();
+            }
+        }
+        return allrides;
+    }
 }
