@@ -23,13 +23,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        return super.authenticationManagerBean();
 //    }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("user1").password("{noop}user1Pass").roles("USER")
-//                .and()
-//                .withUser("admin1").password("{noop}admin1Pass").roles("ADMIN");
-//    }
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("passenger").password("password").roles("PASSENGER")
+                .and()
+                .withUser("admin").password("password").roles("ADMIN")
+                .and()
+                .withUser("driver").password("password").roles("DRIVER");
+    }
 
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler(){
@@ -40,7 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/**", "/home", "/homePage").permitAll()
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/passenger/**").hasAnyRole("PASSENGER")
+                .antMatchers("/driver/**").hasAnyRole("DRIVER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

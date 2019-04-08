@@ -10,7 +10,8 @@
     <title>Success</title>
 </head>
 <body>
-    <p>Success! Welcome <span th:text="${#name}"></span></p>
+    <h1 th:inline="text">Hello <span sec:authentication="name"></span>
+    </h1>
     <a href="homePage">Go Home</a>
 </body>
 
