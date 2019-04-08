@@ -30,11 +30,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/admin").setViewName("admin");
     }
-<<<<<<< HEAD
 
-    @GetMapping("/createride")
-
->>>>>>> 03371e11802899f776a1151e0714f6f795c81b87
     public String createRide(Model model){
         model.addAttribute("createRideForm", new CreateRideForm());
         return "createride";

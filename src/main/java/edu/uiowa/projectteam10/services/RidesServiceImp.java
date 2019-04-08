@@ -6,7 +6,6 @@ import edu.uiowa.projectteam10.repository.RidesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -17,9 +16,12 @@ public class RidesServiceImp implements RidesService {
         this.ridesRepository = ridesRepository;
     }
 
-<<<<<<< HEAD
+    @Override
+    public Ride save(Ride rides) {
+        ridesRepository.save(rides);
+        return rides;
+    }
 
->>>>>>> 03371e11802899f776a1151e0714f6f795c81b87
     @Override
     public Ride saveForm(CreateRideForm rideForm) {
         Ride ride = new Ride();
