@@ -29,8 +29,6 @@ public class LoginController extends WebMvcConfigurerAdapter {
     @Autowired
     private UserService userService;
     @Autowired
-    private RidesService rideService;
-    @Autowired
     private RouteService routeService;
     private User currentUser;
 
@@ -71,47 +69,12 @@ public class LoginController extends WebMvcConfigurerAdapter {
         return "home";
     }
 
-    @GetMapping("/driver")
-    public String driverPage(Model model){
-        List<Ride> rides = this.rideService.getEmptyRides();
-        model.addAttribute("unselectRides", rides);
-        /*UserDetails userLogged = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();*/
-        return "driver";
-    }
-
-    @PostMapping("/driver")
-    public String update(@RequestParam("selection") String selection, Model model){
-
-        return "rides";
-    }
-
     @GetMapping("/home")
     public String goHome(Model model, Principal principal){
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
         System.out.println(loginedUser);
         return "home";
     }
-
-    @GetMapping("/admin")
-    public String adminPage(){return "admin"; }
-
-    @GetMapping("/rides")
-    public String ridesPage(Model model){
-        List<Ride> rides = this.rideService.getRides();
-        model.addAttribute("availableRides", rides);
-        return "rides";
-    }
-    @GetMapping("/passenger")
-    public String passengerPage(){
-        return "passenger";
-    }
-
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
-    public  String currentUserName(Authentication authentication){
-        return authentication.getName(); }
-
 
 
 }

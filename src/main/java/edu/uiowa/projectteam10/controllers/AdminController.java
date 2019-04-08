@@ -21,6 +21,9 @@ public class AdminController extends WebMvcConfigurerAdapter {
     @Autowired
     private RouteService routeService;
 
+    @GetMapping("/admin")
+    public String adminPage(){return "admin"; }
+
     @GetMapping("/createride")
     public String createRide(Model model){
         model.addAttribute("createRideForm", new CreateRideForm());

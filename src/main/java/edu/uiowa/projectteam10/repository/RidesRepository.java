@@ -11,6 +11,4 @@ import java.util.Collection;
 import java.util.List;
 
 public interface RidesRepository extends JpaRepository<Ride, Integer> {
-    @Query("SELECT driver FROM rides WHERE rideid =: selectiion")
-    void addDriverToRide(@Param("selection") Integer selection);
 }
