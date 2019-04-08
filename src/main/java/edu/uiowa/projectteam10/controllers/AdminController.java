@@ -24,13 +24,13 @@ public class AdminController extends WebMvcConfigurerAdapter {
     @GetMapping("/admin")
     public String adminPage(){return "admin"; }
 
-    @GetMapping("/createride")
+    @GetMapping("/admin/createride")
     public String createRide(Model model){
         model.addAttribute("createRideForm", new CreateRideForm());
         return "createride";
     }
 
-    @PostMapping("/createride")
+    @PostMapping("/admin/createride")
     public String postCreateRide(@Valid CreateRideForm rideForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "createride";
@@ -39,13 +39,13 @@ public class AdminController extends WebMvcConfigurerAdapter {
         return "admin";
     }
 
-    @GetMapping("/createroute")
+    @GetMapping("/admin/createroute")
     private String createRoute(Model model){
         model.addAttribute("createRouteForm", new CreateRouteForm());
         return "createroute";
     }
 
-    @PostMapping("/createroute")
+    @PostMapping("/admin/createroute")
     public String postCreateRoute(@Valid CreateRouteForm routeForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "createroute";

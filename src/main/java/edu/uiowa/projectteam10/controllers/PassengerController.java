@@ -14,7 +14,7 @@ public class PassengerController {
     @Autowired
     private RidesService rideService;
 
-    @GetMapping("/rides")
+    @GetMapping("/passenger/rides")
     public String ridesPage(Model model){
         List<Ride> rides = this.rideService.getRides();
         model.addAttribute("availableRides", rides);
