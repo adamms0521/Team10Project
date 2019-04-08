@@ -31,6 +31,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
         registry.addViewController("/admin").setViewName("admin");
     }
 
+    @GetMapping("/admin/createride")
     public String createRide(Model model){
         model.addAttribute("createRideForm", new CreateRideForm());
         return "createride";
