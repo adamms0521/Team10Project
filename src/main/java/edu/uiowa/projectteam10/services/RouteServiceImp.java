@@ -1,10 +1,12 @@
 package edu.uiowa.projectteam10.services;
 
 import edu.uiowa.projectteam10.forms.CreateRouteForm;
+import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.model.Route;
 import edu.uiowa.projectteam10.repository.RoutesRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +30,16 @@ public class RouteServiceImp implements RouteService {
         route.setRouteName(routeForm.getRouteName());
         route.setDistance(routeForm.getDistance());
         return save(route);
+    }
+
+    @Override
+    public List<Route> getRoutes(){
+        Iterable<Route> routes = this.routesRepository.findAll();
+        List<Route> allroutes = new ArrayList<>();
+        for(Route route: routes){
+            allroutes.add(route);
+        }
+        return allroutes;
     }
 
     @Override

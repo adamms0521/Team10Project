@@ -10,5 +10,7 @@ public interface RouteService {
 
     Route saveForm(CreateRouteForm routeForm);
 
+    List<Route> getRoutes();
+
     List<String> getRouteInfo();
 }
