@@ -2,12 +2,9 @@ package edu.uiowa.projectteam10.forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-public class CreateRideForm {
-    @NotBlank
-    private String startPlace;
+import javax.validation.constraints.NotNull;
 
-    @NotBlank
-    private String endPlace;
+public class CreateRideForm {
 
     @NotBlank
     private String startTime;
@@ -15,21 +12,9 @@ public class CreateRideForm {
     @NotBlank
     private String endTime;
 
-    public String getStartPlace() {
-        return startPlace;
-    }
+    @NotNull
+    private String routeName;
 
-    public void setStartPlace(String startPlace) {
-        this.startPlace = startPlace;
-    }
-
-    public String getEndPlace() {
-        return endPlace;
-    }
-
-    public void setEndPlace(String endPlace) {
-        this.endPlace = endPlace;
-    }
 
     public String getStartTime() {
         return startTime;
@@ -45,5 +30,13 @@ public class CreateRideForm {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getRouteName() {
+        return routeName;
+    }
+
+    public void setRouteName(String routeName) {
+        this.routeName = routeName;
     }
 }

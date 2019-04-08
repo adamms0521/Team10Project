@@ -1,43 +1,64 @@
 package edu.uiowa.projectteam10.services;
 
-import edu.uiowa.projectteam10.converter.CreateRideFormtoRide;
 import edu.uiowa.projectteam10.forms.CreateRideForm;
-import edu.uiowa.projectteam10.model.Rides;
+import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.repository.RidesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
 public class RidesServiceImp implements RidesService {
     private RidesRepository ridesRepository;
-    private CreateRideFormtoRide createRideFormtoRide;
 
-    public RidesServiceImp(RidesRepository ridesRepository, CreateRideFormtoRide createRideFormtoRide){
+    public RidesServiceImp(RidesRepository ridesRepository){
         this.ridesRepository = ridesRepository;
-        this.createRideFormtoRide = createRideFormtoRide;
+    }
+
+<<<<<<< HEAD
+
+>>>>>>> 03371e11802899f776a1151e0714f6f795c81b87
+    @Override
+    public Ride saveForm(CreateRideForm rideForm) {
+        Ride ride = new Ride();
+        ride.setStartTime(rideForm.getStartTime());
+        ride.setEndTime(rideForm.getEndTime());
+        ride.setRouteName(rideForm.getRouteName());
+        save(ride);
+        return ride;
     }
 
     @Override
-    public Rides save(Rides rides) {
-        ridesRepository.save(rides);
-        return rides;
+    public List<Ride> getRides(){
+        Iterable<Ride> rides = this.ridesRepository.findAll();
+        List<Ride> allrides = new ArrayList<>();
+        for(Ride ride: rides){
+            try {
+                if (!ride.getDriver().isEmpty()) {
+                    allrides.add(ride);
+                }
+            } catch (NullPointerException e){
+                e.getStackTrace();
+            }
+        }
+        return allrides;
     }
 
     @Override
-    public Rides saveForm(CreateRideForm rideForm) {
-        Rides savedRide = save(createRideFormtoRide.convert(rideForm));
-        return savedRide;
-    }
-
-    @Override
-    public List<Rides> getRides(){
-        Iterable<Rides> rides = this.ridesRepository.findAll();
-        List<Rides> allrides = new ArrayList<>();
-        for(Rides ride: rides){
-            allrides.add(ride);
+    public List<Ride> getEmptyRides(){
+        Iterable<Ride> rides = this.ridesRepository.findAll();
+        List<Ride> allrides = new ArrayList<>();
+        for(Ride ride: rides){
+            try {
+                if (ride.getDriver().isEmpty()) {
+                    allrides.add(ride);
+                }
+            } catch (NullPointerException e){
+                e.getStackTrace();
+                allrides.add(ride);
+            }
         }
         return allrides;
     }

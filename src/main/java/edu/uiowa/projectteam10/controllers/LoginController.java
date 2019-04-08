@@ -4,33 +4,30 @@ import javax.validation.Valid;
 
 import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
-import edu.uiowa.projectteam10.model.Rides;
+import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.model.User;
 import edu.uiowa.projectteam10.services.RidesService;
+import edu.uiowa.projectteam10.services.RouteService;
 import edu.uiowa.projectteam10.services.UserService;
-import edu.uiowa.projectteam10.converter.UsertoRegisterForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.security.Principal;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
 public class LoginController extends WebMvcConfigurerAdapter {
     @Autowired
     private UserService userService;
-    @Autowired
-    private UsertoRegisterForm usertoRegisterForm;
-    @Autowired
-    private RidesService rideService;
     private User currentUser;
 
     @Override
@@ -77,13 +74,5 @@ public class LoginController extends WebMvcConfigurerAdapter {
         return "home";
     }
 
-    @GetMapping("/admin")
-    public String adminPage(){return "admin"; }
 
-    @GetMapping("/rides")
-    public String ridesPage(Model model){
-        List<Rides> rides = this.rideService.getRides();
-        model.addAttribute("availableRides", rides);
-        return "rides";
-    }
 }

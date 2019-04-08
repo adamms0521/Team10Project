@@ -1,17 +1,19 @@
 package edu.uiowa.projectteam10.services;
 
 import edu.uiowa.projectteam10.forms.CreateRideForm;
-import edu.uiowa.projectteam10.forms.RegisterForm;
-import edu.uiowa.projectteam10.model.Rides;
-import edu.uiowa.projectteam10.model.User;
+import edu.uiowa.projectteam10.model.Ride;
 
 import java.util.List;
 
 public interface RidesService {
-    Rides save(Rides rides);
+    Ride save(Ride ride);
 
-    Rides saveForm(CreateRideForm rideForm);
+    Ride saveForm(CreateRideForm rideForm);
 
-    List<Rides> getRides();
+    List<Ride> getRides();
+
+    List<Ride> getEmptyRides();
+
+
 }
 

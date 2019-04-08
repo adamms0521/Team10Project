@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create Route</title>
+</head>
+<body>
+<div class = "createroute-form">
+    <form action="#" th:action="@{/admin/createroute}" th:object="${createRouteForm}"
+          method="post"><h2 class="text-center">Create Route</h2>
+        <div><label> Route Name : <input type="text" name="routeName"/> </label></div>
+        <div><label> Starting Place : <input type="text" name="startPlace"/> </label></div>
+        <!--     <span style="color: red" th:if="${#fields.hasErrors('startPlace')}" th:errors="*{startPlace}"></span> -->
+        <div><label> Ending Place : <input type="text" name="endPlace"/> </label></div>
+        <!--     <span style="color: red" th:if="${#fields.hasErrors('endPlace')}" th:errors="*{endPlace}"></span> -->
+        <!--     <span style="color: red" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></span> -->
+        <div><label> Distance (in miles): <input type="number" name="distance"/> </label></div>
+        <!--     <span style="color: red" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></span> -->
+        <div><input type="submit" value="Create Route"/></div>
+    </form>
+    <a href="/admin">Cancel</a>
+</div>
+</body>
+</html>
