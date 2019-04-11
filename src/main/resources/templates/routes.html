@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Routes</title>
+</head>
+<body>
+<h1>Available Routes</h1>
+<table>
+    <tr>
+        <td>Route Name</td>
+        <td>Start Time</td>
+        <td>End Time</td>
+        <td>Driver</td>
+    </tr>
+    <tr th:each="route: ${availableRoutes}">
+        <td th:text="${route.routeName}">Route Name</td>
+        <td th:text="${route.distance}">Distance</td>
+        <td th:text="${route.endPlace}">End Place</td>
+        <td th:text="${route.startPlace}">Start Place</td>
+    </tr>
+</table>
+</body>
+</html>

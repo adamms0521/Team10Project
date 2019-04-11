@@ -11,26 +11,24 @@
 </head>
 <body>
     <h2>Driver Information</h2>
+<form action="#" th:action='@{/driver}' method="post" th:object="${unselectRides}">
     <table border="2" align="center">
         <tr>
+            <td>Selection</td>
             <td>routeName</td>
             <td>startTime</td>
             <td>endTime</td>
-            <td>distance</td>
-        </tr>
-        <tr>
         </tr>
         <tr th:each ="i:${unselectRides}">
-            <td><input type="radio" name="diverPick" value="${i.routeName}" /></td>
-            <td th:text = "${i.routeName}">routeName</td>
-            <td th:text = "${i.startTime}">startTime</td>
-            <td th:text = "${i.endTime}">endTime</td>
-            <td th:text = "${i.distance}">distance</td>
+            <td><input type="radio" name="driverPick" th:name="selection" th:value="${i.rideID}"/></td>
+            <td th:text = "${i.routeName}"></td>
+            <td th:text = "${i.startTime}"></td>
+            <td th:text = "${i.endTime}"></td>
         </tr>
     </table>
     <div align="center"><input type="submit" value="Submit"/></div>
 <a href="homePage">Back</a>
-
+</form>
 </body>
 
 </html>
