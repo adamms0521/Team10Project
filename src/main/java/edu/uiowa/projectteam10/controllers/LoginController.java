@@ -1,5 +1,8 @@
 package edu.uiowa.projectteam10.controllers;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import edu.uiowa.projectteam10.forms.LoginForm;
@@ -25,15 +28,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Controller
-public class LoginController extends WebMvcConfigurerAdapter {
+public class LoginController{
     @Autowired
     private UserService userService;
     private User currentUser;
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/home").setViewName("home");
-    }
 
     @RequestMapping({"/", "/homePage"})
     public String homePage(){return "homePage";}
@@ -45,10 +44,11 @@ public class LoginController extends WebMvcConfigurerAdapter {
     }
 
     @PostMapping("/login")
-    public String loginPost(@Valid LoginForm loginForm, BindingResult bindingResult){
-        if(bindingResult.hasErrors() || !userService.userExistsPasswordCorrect(loginForm)){
+    public String loginPost(@Valid LoginForm loginForm, BindingResult bindingResult, HttpSession session){
+        if(bindingResult.hasErrors()){// || !userService.userExistsPasswordCorrect(loginForm)){
             return "login";
         }
+
         return "home";
     }
 

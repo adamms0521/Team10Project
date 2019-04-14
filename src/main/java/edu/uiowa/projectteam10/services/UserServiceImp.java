@@ -50,6 +50,11 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public String getRoleFromUserName(LoginForm loginForm) {
+       return userRepository.findRolebyName(loginForm.getuserName());
+    }
+
+    @Override
     public User save(User user) {
         userRepository.save(user);
         return user;

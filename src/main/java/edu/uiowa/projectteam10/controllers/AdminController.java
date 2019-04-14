@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.ui.Model;
@@ -31,6 +32,10 @@ public class AdminController extends WebMvcConfigurerAdapter {
         registry.addViewController("/admin").setViewName("admin");
     }
 
+    @GetMapping("/admin")
+    public String adminPage(){
+        return "admin";
+    }
     @GetMapping("/admin/createride")
     public String createRide(Model model){
         model.addAttribute("createRideForm", new CreateRideForm());
