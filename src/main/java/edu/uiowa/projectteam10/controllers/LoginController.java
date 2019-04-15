@@ -31,24 +31,37 @@ import java.util.List;
 public class LoginController{
     @Autowired
     private UserService userService;
-    private User currentUser;
 
 
     @RequestMapping({"/", "/homePage"})
     public String homePage(){return "homePage";}
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model, HttpSession session) {
+        String role = (String) session.getAttribute("ROLE");
         model.addAttribute("loginForm", new LoginForm());
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginPost(@Valid LoginForm loginForm, BindingResult bindingResult, HttpSession session){
-        if(bindingResult.hasErrors()){// || !userService.userExistsPasswordCorrect(loginForm)){
+    public String loginPost(@Valid LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request){
+        if(bindingResult.hasErrors()){
             return "login";
         }
-
+        if(!userService.userExistsPasswordCorrect(loginForm)){
+            return "login";
+        }
+        String role = (String) request.getAttribute("ROLE");
+        request.getSession().setAttribute("ROLE", role);
+        String userRole = userService.getRoleFromUserName(loginForm);
+        if(userRole.equals("Passenger")){
+            return "redirect:/passenger";
+        } else if(userRole.equals("Driver")){
+            return "redirect:/driver";
+        } else if(userRole.equals("Admin")){
+            return "redirect:/admin";
+        }
+    //    userService.setCurrentUser(userService.getUser(loginForm));
         return "home";
     }
 
@@ -63,14 +76,15 @@ public class LoginController{
         if(bindingResult.hasErrors() || userService.userExists(registerForm) || !userService.passwordsMatch(registerForm)){
             return "registration";
         }
-        currentUser = userService.saveForm(registerForm);
+        User currentUser = userService.saveForm(registerForm);
+        userService.setCurrentUser(currentUser);
         return "home";
     }
 
     @GetMapping("/home")
     public String goHome(Model model, Principal principal){
-        User loginedUser = (User) ((Authentication) principal).getPrincipal();
-        System.out.println(loginedUser);
+//        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+//        System.out.println(loginedUser);
         return "home";
     }
 

@@ -17,20 +17,12 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//    @Bean("authenticationManager")
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
-
+    @Autowired
+    private DetailsService detailsService;
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("passenger").password("password").roles("PASSENGER")
-                .and()
-                .withUser("admin").password("password").roles("ADMIN")
-                .and()
-                .withUser("driver").password("password").roles("DRIVER");
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        auth.userDetailsService(detailsService).passwordEncoder(passwordEncoder);
     }
 
     @Bean
@@ -42,10 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/homePage").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/passenger/**").hasAnyRole("PASSENGER")
-                .antMatchers("/driver/**").hasAnyRole("DRIVER")
+                .antMatchers("/**", "/home", "/homePage", "/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

@@ -10,7 +10,6 @@ public interface UserService {
 
     User save(User user);
 
-
     User saveForm(RegisterForm registerForm);
 
     boolean userExistsPasswordCorrect(LoginForm loginForm);
@@ -22,4 +21,12 @@ public interface UserService {
     String getName(User user);
 
     String getRoleFromUserName(LoginForm loginForm);
+
+    void setCurrentUser(User user);
+
+    User getCurrentUser();
+
+    User getUser(LoginForm loginForm);
+
+
 }

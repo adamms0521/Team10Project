@@ -5,6 +5,7 @@ import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 import edu.uiowa.projectteam10.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Service;
 public class UserServiceImp implements UserService {
     private PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
+    private User currentUser;
 
+    @Lazy
     @Autowired
     public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -20,8 +23,9 @@ public class UserServiceImp implements UserService {
     }
 
     public boolean userExistsPasswordCorrect(LoginForm loginForm){
+        String encrypted = userRepository.findPasswordbyName(loginForm.getuserName());
         if(userRepository.exists(loginForm.getuserName())) {
-            if(passwordEncoder.matches(loginForm.getPassword(), userRepository.findPasswordbyName(loginForm.getuserName()))){
+            if(passwordEncoder.matches(loginForm.getPassword(), encrypted)){
                 return true;
             }
         }
@@ -68,6 +72,22 @@ public class UserServiceImp implements UserService {
         user.setPassword(passwordEncoder.encode(registerForm.getPassword()));
         user.setRole(registerForm.getRole());
         save(user);
+        return user;
+    }
+    @Override
+    public void setCurrentUser(User user){
+        currentUser = user;
+    }
+    @Override
+    public User getCurrentUser(){
+        return currentUser;
+    }
+
+    @Override
+    public User getUser(LoginForm loginForm) {
+        User user = new User();
+        user.setUserName(loginForm.getuserName());
+        user.setPassword(passwordEncoder.encode(loginForm.getPassword()));
         return user;
     }
 }

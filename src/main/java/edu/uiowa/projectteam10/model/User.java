@@ -1,18 +1,19 @@
 package edu.uiowa.projectteam10.model;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.ui.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.security.Principal;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
 
 
 @Entity(name = "user")
-public class
-
-User {
-
+public class User {
     @Id
     @NotNull
     private String username;
@@ -20,10 +21,15 @@ User {
     private String password;
     @NotNull
     private String role;
-
     @NotNull
     private String name;
+    public User(String username, String password, String role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
 
+    }
+    public User(){}
     public String getUserName() {
         return username;
     }
