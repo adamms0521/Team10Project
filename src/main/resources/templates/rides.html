@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,7 +9,7 @@
 </head>
 <body>
 <h1>Available Rides</h1>
-<table>
+<table border="2" align="center">
     <tr>
         <td>Route Name</td>
         <td>Start Time</td>
@@ -22,5 +23,6 @@
         <td th:text="${ride.driver}">Driver</td>
     </tr>
 </table>
+<a href="/passenger/routes">Back</a>
 </body>
 </html>

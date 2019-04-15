@@ -10,7 +10,7 @@ public interface RidesService {
 
     Ride saveForm(CreateRideForm rideForm);
 
-    List<Ride> getRides();
+    List<Ride> getRidesByRoute(String routeName);
 
     List<Ride> getEmptyRides();
 

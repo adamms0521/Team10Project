@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ public class PassengerController {
     @Autowired
     private RouteService routeService;
 
-    @GetMapping("/passenger/rides")
-    public String ridesPage(Model model){
-        List<Ride> rides = this.rideService.getRides();
+    @GetMapping("/passenger/routes/rides")
+    public String ridesPage(@RequestParam("Selection") String routeName, Model model){
+        List<Ride> rides = this.rideService.getRidesByRoute(routeName);
         model.addAttribute("availableRides", rides);
         return "rides";
     }
