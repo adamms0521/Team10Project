@@ -4,23 +4,22 @@ import edu.uiowa.projectteam10.forms.CreateRideForm;
 import edu.uiowa.projectteam10.forms.CreateRouteForm;
 import edu.uiowa.projectteam10.forms.CreateVanForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
+import edu.uiowa.projectteam10.model.Route;
 import edu.uiowa.projectteam10.services.RidesService;
 import edu.uiowa.projectteam10.services.RouteService;
 import edu.uiowa.projectteam10.services.UserService;
-import edu.uiowa.projectteam10.services.VanService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.ui.Model;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class AdminController extends WebMvcConfigurerAdapter {
@@ -28,8 +27,6 @@ public class AdminController extends WebMvcConfigurerAdapter {
     private RidesService ridesService;
     @Autowired
     private RouteService routeService;
-    @Autowired
-    private VanService vanService;
     @Autowired
     private UserService userService;
 
@@ -45,11 +42,14 @@ public class AdminController extends WebMvcConfigurerAdapter {
     @GetMapping("/admin/createride")
     public String createRide(Model model){
         model.addAttribute("createRideForm", new CreateRideForm());
+        List<Route> availableRoutes = this.routeService.getRoutes();
+        model.addAttribute("availableRoutes", availableRoutes);
         return "createride";
     }
 
     @PostMapping("/admin/createride")
-    public String postCreateRide(@Valid CreateRideForm rideForm, BindingResult bindingResult){
+    public String postCreateRide(CreateRideForm rideForm, @RequestParam("Selection") String routeName, BindingResult bindingResult){
+        rideForm.setRouteName(routeName);
         if(bindingResult.hasErrors()){
             return "createride";
         }
@@ -60,7 +60,6 @@ public class AdminController extends WebMvcConfigurerAdapter {
     @GetMapping("/admin/createroute")
     private String createRoute(Model model){
         model.addAttribute("createRouteForm", new CreateRouteForm());
-        
         return "createroute";
     }
 
@@ -73,20 +72,6 @@ public class AdminController extends WebMvcConfigurerAdapter {
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin/createvan")
-    public String createVan(Model model){
-        model.addAttribute("createVanForm", new CreateVanForm());
-        return "createvan";
-    }
-
-    @PostMapping("/admin/createvan")
-    public String postCreateVan(@Valid CreateVanForm vanForm, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return "createvan";
-        }
-        vanService.saveForm(vanForm);
-        return "redirect:/admin";
-    }
     @GetMapping("/admin/createAdmin")
     public String createAdmin(Model model){
         model.addAttribute("registrationForm", new RegisterForm());

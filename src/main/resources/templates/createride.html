@@ -11,18 +11,33 @@
 </head>
 <body>
 <div class = "createride-form">
-    <form action="#" th:action="@{/admin/createride}" th:object="${createRideForm}"
-          method="post"><h2 class="text-center">Create Ride</h2>
+    <h2 align="center">Create Ride</h2>
+    <form action="#" th:action='@{/admin/createride}' method="post" th:object="${availableRoutes}">
+        <table border="2" align="center">
+            <tr>
+                <td>Selection</td>
+                <td>Route Name</td>
+                <td>Distance</td>
+                <td>End Place</td>
+                <td>Start Place</td>
+            </tr>
+            <tr th:each="route: ${availableRoutes}">
+                <td><input type="radio" name="routePick" th:name="Selection" th:value="${route.routeName}"/></td>
+                <td th:text="${route.routeName}">Route Name</td>
+                <td th:text="${route.distance}">Distance</td>
+                <td th:text="${route.endPlace}">End Place</td>
+                <td th:text="${route.startPlace}">Start Place</td>
+            </tr>
+        </table>
+        <div align="center">
         <div><label> Starting Time : <input type="time" name="startTime"/> </label></div>
-   <!--     <span style="color: red" th:if="${#fields.hasErrors('startPlace')}" th:errors="*{startPlace}"></span> -->
+        <!--     <span style="color: red" th:if="${#fields.hasErrors('startPlace')}" th:errors="*{startPlace}"></span> -->
         <div><label> Ending Time : <input type="time" name="endTime"/> </label></div>
-   <!--     <span style="color: red" th:if="${#fields.hasErrors('endPlace')}" th:errors="*{endPlace}"></span> -->
-        <div><label> Route Name: <input type="text" name="routeName"/> </label></div>
-   <!--     <span style="color: red" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></span> -->
-   <!--     <span style="color: red" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></span> -->
+        <!--     <span style="color: red" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></span> -->
         <div><input type="submit" value="Create Ride"/></div>
+            <a href="/admin">Cancel</a>
+        </div>
     </form>
-    <a href="/admin">Cancel</a>
 </div>
 </body>
 </html>
