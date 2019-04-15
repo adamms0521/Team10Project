@@ -33,12 +33,12 @@ public class RidesServiceImp implements RidesService {
     }
 
     @Override
-    public List<Ride> getRides(){
+    public List<Ride> getRidesByRoute(String routeName){
         Iterable<Ride> rides = this.ridesRepository.findAll();
         List<Ride> allrides = new ArrayList<>();
         for(Ride ride: rides){
             try {
-                if (!ride.getDriver().isEmpty()) {
+                if (!ride.getDriver().isEmpty() && ride.getRouteName().matches(routeName)) {
                     allrides.add(ride);
                 }
             } catch (NullPointerException e){

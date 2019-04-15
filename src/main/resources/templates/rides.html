@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,19 +9,25 @@
 </head>
 <body>
 <h1>Available Rides</h1>
-<table>
+<form action="#" th:action="@{/passenger/routes/rides}" method="post" th:object="${availableRides}">
+<table border="2" align="center">
     <tr>
+        <td>Ride Selection</td>
         <td>Route Name</td>
         <td>Start Time</td>
         <td>End Time</td>
         <td>Driver</td>
     </tr>
     <tr th:each="ride: ${availableRides}">
+        <td><input type="radio" name="ridePick" th:name="RideSelection" th:value="${ride.rideID}"/></td>
         <td th:text="${ride.routeName}">Ride Name</td>
         <td th:text="${ride.startTime}">Starting Time</td>
         <td th:text="${ride.endTime}">Ending Time</td>
         <td th:text="${ride.driver}">Driver</td>
     </tr>
 </table>
+    <div align="center"><input type="submit" value="Assign Ride"/></div>
+<a href="/passenger/routes">Back</a>
+</form>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,20 +8,26 @@
     <title>Routes</title>
 </head>
 <body>
-<h1>Available Routes</h1>
-<table>
-    <tr>
-        <td>Route Name</td>
-        <td>Start Time</td>
-        <td>End Time</td>
-        <td>Driver</td>
-    </tr>
-    <tr th:each="route: ${availableRoutes}">
-        <td th:text="${route.routeName}">Route Name</td>
-        <td th:text="${route.distance}">Distance</td>
-        <td th:text="${route.endPlace}">End Place</td>
-        <td th:text="${route.startPlace}">Start Place</td>
-    </tr>
-</table>
+    <h1>Available Routes</h1>
+<form action="#" th:action='@{/passenger/routes/rides}' method="get" th:object="${availableRoutes}">
+    <table border="2" align="center">
+        <tr>
+            <td>Selection</td>
+            <td>Route Name</td>
+            <td>Distance</td>
+            <td>End Place</td>
+            <td>Start Place</td>
+        </tr>
+        <tr th:each="route: ${availableRoutes}">
+            <td><input type="radio" name="routePick" th:name="Selection" th:value="${route.routeName}"/></td>
+            <td th:text="${route.routeName}">Route Name</td>
+            <td th:text="${route.distance}">Distance</td>
+            <td th:text="${route.endPlace}">End Place</td>
+            <td th:text="${route.startPlace}">Start Place</td>
+        </tr>
+    </table>
+    <div align="center"><input type="submit" value="Check Rides"/></div>
+    <a href="/passenger">Back</a>
+</form>
 </body>
 </html>
