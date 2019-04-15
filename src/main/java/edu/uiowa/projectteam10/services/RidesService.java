@@ -14,6 +14,8 @@ public interface RidesService {
 
     List<Ride> getEmptyRides();
 
+    void assignDriver(Integer id, String name);
+
 
 }
 

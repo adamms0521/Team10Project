@@ -13,9 +13,9 @@
 <div class = "createride-form">
     <form action="#" th:action="@{/admin/createride}" th:object="${createRideForm}"
           method="post"><h2 class="text-center">Create Ride</h2>
-        <div><label> Starting Time : <input type="text" name="startTime"/> </label></div>
+        <div><label> Starting Time : <input type="time" name="startTime"/> </label></div>
    <!--     <span style="color: red" th:if="${#fields.hasErrors('startPlace')}" th:errors="*{startPlace}"></span> -->
-        <div><label> Ending Time : <input type="text" name="endTime"/> </label></div>
+        <div><label> Ending Time : <input type="time" name="endTime"/> </label></div>
    <!--     <span style="color: red" th:if="${#fields.hasErrors('endPlace')}" th:errors="*{endPlace}"></span> -->
         <div><label> Route Name: <input type="text" name="routeName"/> </label></div>
    <!--     <span style="color: red" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></span> -->

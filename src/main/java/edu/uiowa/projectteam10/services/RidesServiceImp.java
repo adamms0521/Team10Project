@@ -64,4 +64,9 @@ public class RidesServiceImp implements RidesService {
         }
         return allrides;
     }
+
+    @Override
+    public void assignDriver(Integer id, String name) {
+        ridesRepository.assignDriver(id, name);
+    }
 }

@@ -54,6 +54,7 @@ public class LoginController{
         String role = (String) request.getAttribute("ROLE");
         request.getSession().setAttribute("ROLE", role);
         String userRole = userService.getRoleFromUserName(loginForm);
+        userService.setCurrentUser(userService.getUser(loginForm));
         if(userRole.equals("Passenger")){
             return "redirect:/passenger";
         } else if(userRole.equals("Driver")){
@@ -61,7 +62,6 @@ public class LoginController{
         } else if(userRole.equals("Admin")){
             return "redirect:/admin";
         }
-    //    userService.setCurrentUser(userService.getUser(loginForm));
         return "home";
     }
 
