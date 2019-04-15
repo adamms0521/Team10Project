@@ -60,6 +60,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
     @GetMapping("/admin/createroute")
     private String createRoute(Model model){
         model.addAttribute("createRouteForm", new CreateRouteForm());
+        
         return "createroute";
     }
 

@@ -9,7 +9,4 @@ public class Passengers {
     @Id
     @GeneratedValue
     private Integer passengerId;
-
-    @ManyToOne(cascade= CascadeType.ALL)
-    private Van van;
 }
