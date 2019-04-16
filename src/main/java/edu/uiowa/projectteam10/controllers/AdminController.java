@@ -36,10 +36,16 @@ public class AdminController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/admin")
     public String adminPage(){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
         return "admin";
     }
     @GetMapping("/admin/createride")
     public String createRide(Model model){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
         model.addAttribute("createRideForm", new CreateRideForm());
         List<Route> availableRoutes = this.routeService.getRoutes();
         model.addAttribute("availableRoutes", availableRoutes);
@@ -58,6 +64,9 @@ public class AdminController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/admin/createroute")
     private String createRoute(Model model){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
         model.addAttribute("createRouteForm", new CreateRouteForm());
         return "createroute";
     }
@@ -73,6 +82,9 @@ public class AdminController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/admin/createAdmin")
     public String createAdmin(Model model){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
         model.addAttribute("registrationForm", new RegisterForm());
         return "createAdmin";
     }
@@ -84,5 +96,17 @@ public class AdminController extends WebMvcConfigurerAdapter {
         }
         userService.saveForm(registerForm);
         return "redirect:/admin";
+    }
+    private boolean checkAccess(){
+        try {
+            String currentUser = userService.getCurrentUser().getUserName();
+            if (userService.getRole(currentUser).equals("Admin")) {
+                return true;
+            }
+            return false;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

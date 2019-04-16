@@ -34,7 +34,9 @@ public class LoginController{
 
 
     @RequestMapping({"/", "/homePage"})
-    public String homePage(){return "homePage";}
+    public String homePage(){
+        userService.setCurrentUser(null);
+        return "homePage";}
 
     @GetMapping("/login")
     public String login(Model model, HttpSession session) {
@@ -87,6 +89,5 @@ public class LoginController{
 //        System.out.println(loginedUser);
         return "home";
     }
-
 
 }

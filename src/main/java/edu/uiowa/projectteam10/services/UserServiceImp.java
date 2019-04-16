@@ -90,6 +90,11 @@ public class UserServiceImp implements UserService {
         user.setPassword(passwordEncoder.encode(loginForm.getPassword()));
         return user;
     }
+
+    @Override
+    public String getRole(String userName) {
+        return userRepository.findRolebyName(userName);
+    }
 }
 
 

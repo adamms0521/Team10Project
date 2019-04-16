@@ -28,5 +28,5 @@ public interface UserService {
 
     User getUser(LoginForm loginForm);
 
-
+    String getRole(String userName);
 }

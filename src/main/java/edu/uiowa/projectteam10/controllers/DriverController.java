@@ -21,6 +21,9 @@ public class DriverController {
 
     @GetMapping("/driver")
     public String driverPage(Model model){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
         List<Ride> rides = this.rideService.getEmptyRides();
         model.addAttribute("unselectRides", rides);
         /*UserDetails userLogged = (UserDetails) SecurityContextHolder.getContext()
@@ -36,5 +39,16 @@ public class DriverController {
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     public  String currentUserName(Authentication authentication){
         return authentication.getName(); }
-
+    private boolean checkAccess(){
+        try {
+            String currentUser = userService.getCurrentUser().getUserName();
+            if (userService.getRole(currentUser).equals("Driver")) {
+                return true;
+            }
+            return false;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
