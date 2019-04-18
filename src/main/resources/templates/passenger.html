@@ -8,11 +8,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Passenger</title>
+    <style>
+    body{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: #fff;
+    color: black;
+    text-align: center;
+    }
+    h1 {
+    font-family: "Impact";
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    }
+    a {
+    color: navy;
+    text-decoration: none;
+    padding-top: 10px;
+    text-transform: uppercase;
+    }
+    .border {
+    width:960px;
+    margin:0 auto;
+    border:1px solid #ccc;
+    background:gainsboro;
+    padding: 100px 25px 240px;
+    }
+    .logout {
+        color: red;
+    }
+    </style>
 </head>
 <body th:align="center">
+<div class="border">
 <h2>Passenger HomePage</h2>
     <a href="passenger/routes">Routes Available</a>
-    <a href="homePage">Logout</a>
+    <br></br>
+    <br></br>
+    <a class="logout" href="homePage">Logout</a>
+</div>
 </body>
 
 </html>

@@ -40,8 +40,6 @@ public class LoginController{
 
     @GetMapping("/login")
     public String login(Model model, HttpSession session) {
-        String role = (String) session.getAttribute("ROLE");
-        model.addAttribute("loginForm", new LoginForm());
         return "login";
     }
 
