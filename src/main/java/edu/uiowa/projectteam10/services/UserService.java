@@ -29,4 +29,6 @@ public interface UserService {
     User getUser(LoginForm loginForm);
 
     String getRole(String userName);
+
+    void assignRideToUser(Integer id, String name);
 }

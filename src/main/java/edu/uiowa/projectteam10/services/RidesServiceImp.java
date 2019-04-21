@@ -69,4 +69,5 @@ public class RidesServiceImp implements RidesService {
     public void assignDriver(Integer id, String name) {
         ridesRepository.assignDriver(id, name);
     }
+
 }

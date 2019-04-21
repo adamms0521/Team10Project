@@ -95,6 +95,11 @@ public class UserServiceImp implements UserService {
     public String getRole(String userName) {
         return userRepository.findRolebyName(userName);
     }
+
+    @Override
+    public void assignRideToUser(Integer id, String name) {
+        userRepository.assignUsertoRide(id, name);
+    }
 }
 
 
