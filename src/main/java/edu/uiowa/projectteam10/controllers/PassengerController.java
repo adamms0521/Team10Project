@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -31,6 +32,13 @@ public class PassengerController {
         model.addAttribute("availableRides", rides);
         return "rides";
     }
+
+    @PostMapping("/passenger/routes/rides")
+    public String updatePassenger(@RequestParam("RideSelection") Integer rideID){
+        userService.assignRideToUser(rideID, userService.getCurrentUser().getUserName());
+        return "rides";
+    }
+
     @GetMapping("/passenger")
     public String passengerPage() {
         if(!checkAccess()){

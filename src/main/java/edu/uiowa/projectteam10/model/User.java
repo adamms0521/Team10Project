@@ -23,6 +23,9 @@ public class User {
     private String role;
     @NotNull
     private String name;
+
+    private Integer assignedRideID;
+
     public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
