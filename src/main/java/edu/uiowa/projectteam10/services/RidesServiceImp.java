@@ -86,4 +86,9 @@ public class RidesServiceImp implements RidesService {
         ridesRepository.assignDriver(id, name);
     }
 
+    @Override
+    public String getRoutebyRide(Integer id) {
+        return ridesRepository.getRoutebyRideID(id);
+    }
+
 }

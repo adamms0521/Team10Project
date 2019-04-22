@@ -26,6 +26,8 @@ public class User {
 
     private Integer ride_id;
 
+    private Double bills;
+
     public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
@@ -77,5 +79,13 @@ public class User {
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
         model.addAttribute("username", name);
         return "user";
+    }
+
+    public Double getBills() {
+        return bills;
+    }
+
+    public void setBills(Double bills) {
+        this.bills = bills;
     }
 }

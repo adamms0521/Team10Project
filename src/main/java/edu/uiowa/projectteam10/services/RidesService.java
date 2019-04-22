@@ -18,6 +18,7 @@ public interface RidesService {
 
     void assignDriver(Integer id, String name);
 
+    String getRoutebyRide(Integer id);
 
 }
 

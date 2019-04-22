@@ -13,4 +13,6 @@ public interface RouteService {
     List<Route> getRoutes();
 
     List<String> getRouteInfo();
+
+    Double getDistanceByName(String name);
 }

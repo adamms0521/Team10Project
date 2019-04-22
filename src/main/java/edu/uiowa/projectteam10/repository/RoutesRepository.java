@@ -10,11 +10,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface RoutesRepository extends JpaRepository<Route, String> {
-//    @Query("SELECT startPlace, endPlace, distance FROM routes")
-//    Iterable<Route> getRouteInfo();
-//    @Query("SELECT rides.startTime, rides.endTime, rides.driver, routes.startPlace, routes.endPlace, routes.distance, routes.routeName " +
-//            "FROM Route routes\n" +
-//           "RIGHT JOIN routes.rides rides ON rides.routeId = routes.routeId")
-//    List<String> RightJoinRidesRoute();
-
+    @Query("SELECT distance FROM routes WHERE route_name = :route_name")
+    Double getDistanceByName(@Param("route_name") String route_name);
 }

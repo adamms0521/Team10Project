@@ -36,7 +36,7 @@ public class PassengerController {
     @PostMapping("/passenger/routes/rides")
     public String updatePassenger(@RequestParam("RideSelection") Integer rideID){
         userService.assignRideToUser(rideID, userService.getCurrentUser().getUserName());
-        return "rides";
+        return "redirect:/passenger";
     }
 
     @GetMapping("/passenger")
@@ -66,6 +66,16 @@ public class PassengerController {
         List<Ride> passengerRides = this.rideService.getRidesByID(rideID);
         model.addAttribute("passengerRides", passengerRides);
         return "myRides";
+    }
+    
+    @GetMapping("/passenger/billing")
+    public String billingPage(Model model){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
+        Double bill = userService.getBilling();
+        model.addAttribute("passengerBilling", bill);
+        return "billing";
     }
 
     private boolean checkAccess(){

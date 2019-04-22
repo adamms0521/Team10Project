@@ -47,4 +47,9 @@ public class RouteServiceImp implements RouteService {
        // return routesRepository.RightJoinRidesRoute();
         return null;
     }
+
+    @Override
+    public Double getDistanceByName(String name) {
+        return routesRepository.getDistanceByName(name);
+    }
 }

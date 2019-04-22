@@ -5,6 +5,8 @@ import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 
 public interface UserService {
 
@@ -33,4 +35,6 @@ public interface UserService {
     String getRole(String userName);
 
     void assignRideToUser(Integer id, String name);
+
+    Double getBilling();
 }

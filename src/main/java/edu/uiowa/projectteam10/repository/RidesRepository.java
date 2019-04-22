@@ -12,4 +12,7 @@ public interface RidesRepository extends JpaRepository<Ride, Integer> {
     @Modifying
     @Query("UPDATE rides SET driver = :name where rideid = :rideid")
     void assignDriver(@Param("rideid") Integer rideid, @Param("name") String name);
+
+    @Query("SELECT routeName FROM rides WHERE rideid = :rideid")
+    String getRoutebyRideID(@Param("rideid") Integer rideid);
 }

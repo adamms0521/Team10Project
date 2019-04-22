@@ -9,17 +9,23 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 @Service
 public class UserServiceImp implements UserService {
     private PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
+    private RidesService ridesService;
+    private RouteService routeService;
     private User currentUser;
 
     @Lazy
     @Autowired
-    public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder, RidesService ridesService, RouteService routeService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.ridesService = ridesService;
+        this.routeService = routeService;
     }
 
     public boolean userExistsPasswordCorrect(LoginForm loginForm){
@@ -99,6 +105,13 @@ public class UserServiceImp implements UserService {
     @Override
     public void assignRideToUser(Integer id, String name) {
         userRepository.assignUsertoRide(id, name);
+    }
+
+    @Override
+    public Double getBilling() {
+        Double bill = routeService.getDistanceByName(ridesService.getRoutebyRide(userRepository.findRideIDbyName(currentUser.getUserName())));
+        currentUser.setBills(bill*0.25);
+        return bill;
     }
 
     @Override
