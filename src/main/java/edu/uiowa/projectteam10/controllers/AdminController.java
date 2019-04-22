@@ -60,8 +60,6 @@ public class AdminController extends WebMvcConfigurerAdapter {
         }
         ridesService.setPrice(routeName);
         ridesService.saveForm(rideForm);
-
-
         return "redirect:/admin";
     }
 

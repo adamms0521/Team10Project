@@ -31,8 +31,6 @@ import java.util.List;
 public class LoginController{
     @Autowired
     private UserService userService;
-
-
     @RequestMapping({"/", "/homePage"})
     public String homePage(){
         userService.setCurrentUser(null);

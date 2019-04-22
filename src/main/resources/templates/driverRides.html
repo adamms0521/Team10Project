@@ -74,11 +74,25 @@
 </head>
 <body th:align="center">
 <div class="border">
-<h2>Driver Information</h2>
-    <a href="driver/driverRides">Rides Available</a>
-    <br></br>
-    <br></br>
-    <a class="logout" href="homePage">Logout</a>
+    <h2>Rides Available</h2>
+    <form action="#" th:action='@{/driver/driverRides}' method="post" th:object="${unselectRides}">
+        <table border="2" align="center">
+            <tr>
+                <td>Selection</td>
+                <td>Route Name</td>
+                <td>Start Time</td>
+                <td>End Time</td>
+            </tr>
+            <tr th:each ="i:${unselectRides}">
+                <td><input type="radio" name="driverPick" th:name="selection" th:value="${i.rideID}"/></td>
+                <td th:text = "${i.routeName}"></td>
+                <td th:text = "${i.startTime}"></td>
+                <td th:text = "${i.endTime}"></td>
+            </tr>
+        </table>
+        <div align="center"><input type="submit" value="Submit"/></div>
+        <a href="driver">Back</a>
+    </form>
 </div>
 </body>
 </html>
