@@ -36,5 +36,7 @@ public interface UserService {
 
     void assignRideToUser(Integer id, String name);
 
+    void deleteRideFromUser(String username, Integer RideID);
+
     Double getBilling();
 }

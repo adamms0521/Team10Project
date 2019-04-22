@@ -68,6 +68,15 @@ public class PassengerController {
         model.addAttribute("passengerRides", passengerRides);
         return "myRides";
     }
+
+    @PostMapping("/passenger/myRides")
+    public String unassignRide(@RequestParam("removeRide") Integer rideID){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
+        userService.deleteRideFromUser(userService.getCurrentUser().getUserName(), rideID);
+        return "redirect:/passenger";
+    }
     
     @GetMapping("/passenger/billing")
     public String billingPage(Model model){
