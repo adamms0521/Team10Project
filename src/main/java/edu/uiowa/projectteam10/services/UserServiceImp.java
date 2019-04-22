@@ -107,12 +107,6 @@ public class UserServiceImp implements UserService {
         userRepository.assignUsertoRide(id, name);
     }
 
-    @Override
-    public Double getBilling() {
-        Double bill = routeService.getDistanceByName(ridesService.getRoutebyRide(userRepository.findRideIDbyName(currentUser.getUserName())));
-        currentUser.setBills(bill*0.25);
-        return bill;
-    }
 
     @Override
     public Integer getRideIdFromUser(String userName){

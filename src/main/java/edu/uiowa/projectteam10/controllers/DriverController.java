@@ -34,7 +34,7 @@ public class DriverController {
     @PostMapping("/driver")
     public String update(@RequestParam("selection") Integer selection, Model model, HttpServletRequest request){
         rideService.assignDriver(selection, userService.getCurrentUser().getUserName());
-        return "driver";
+        return "redirect:/driver";
     }
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     public  String currentUserName(Authentication authentication){

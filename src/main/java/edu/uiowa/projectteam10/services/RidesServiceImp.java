@@ -3,14 +3,18 @@ package edu.uiowa.projectteam10.services;
 import edu.uiowa.projectteam10.forms.CreateRideForm;
 import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.repository.RidesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.ws.soap.Addressing;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class RidesServiceImp implements RidesService {
     private RidesRepository ridesRepository;
+    @Autowired
+    private RouteService routeService;
 
     public RidesServiceImp(RidesRepository ridesRepository){
         this.ridesRepository = ridesRepository;
@@ -89,6 +93,19 @@ public class RidesServiceImp implements RidesService {
     @Override
     public String getRoutebyRide(Integer id) {
         return ridesRepository.getRoutebyRideID(id);
+    }
+
+    @Override
+    public void setPrice(String routeName) {
+        Double bill = getBilling(routeName);
+        String finalBill = "$" + bill;
+        ridesRepository.updatePrice(finalBill, routeName);
+    }
+
+    @Override
+    public Double getBilling(String routename) {
+        Double bill = routeService.getDistanceByName(routename);
+        return bill*0.25;
     }
 
 }

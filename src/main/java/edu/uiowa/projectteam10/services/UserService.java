@@ -36,5 +36,4 @@ public interface UserService {
 
     void assignRideToUser(Integer id, String name);
 
-    Double getBilling();
 }

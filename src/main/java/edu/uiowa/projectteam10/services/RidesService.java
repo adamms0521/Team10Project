@@ -20,5 +20,8 @@ public interface RidesService {
 
     String getRoutebyRide(Integer id);
 
+    void setPrice(String name);
+
+    Double getBilling(String routename);
 }
 

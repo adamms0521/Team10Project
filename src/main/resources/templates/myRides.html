@@ -81,6 +81,7 @@
                 <td>Start Time</td>
                 <td>End Time</td>
                 <td>Driver</td>
+                <td>Price</td>
             </tr>
             <tr th:each="ride: ${passengerRides}">
                 <td><input type="radio" name="removeRide" th:name="RideRemoval" th:value="${ride.rideID}"/></td>
@@ -88,6 +89,7 @@
                 <td th:text="${ride.startTime}">Starting Time</td>
                 <td th:text="${ride.endTime}">Ending Time</td>
                 <td th:text="${ride.driver}">Driver</td>
+                <td th:text="${ride.bill}">Price</td>
             </tr>
         </table>
         <div align="center"><input type="submit" value="Remove Ride"/></div>

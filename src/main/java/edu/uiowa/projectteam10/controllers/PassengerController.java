@@ -67,16 +67,6 @@ public class PassengerController {
         model.addAttribute("passengerRides", passengerRides);
         return "myRides";
     }
-    
-    @GetMapping("/passenger/billing")
-    public String billingPage(Model model){
-        if(!checkAccess()){
-            return "redirect:/login";
-        }
-        Double bill = userService.getBilling();
-        model.addAttribute("passengerBilling", bill);
-        return "billing";
-    }
 
     private boolean checkAccess(){
         try {
