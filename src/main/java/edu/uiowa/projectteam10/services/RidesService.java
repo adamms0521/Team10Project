@@ -10,7 +10,7 @@ public interface RidesService {
 
     Ride saveForm(CreateRideForm rideForm);
 
-    List<Ride> getRidesByRoute(String routeName);
+    List<Ride> getRidesByRoute(String routeName, Integer currentRide);
 
     List<Ride> getEmptyRides();
 
@@ -19,6 +19,5 @@ public interface RidesService {
     void assignDriver(Integer id, String name);
 
     String getRoutebyRide(Integer id);
-
 }
 

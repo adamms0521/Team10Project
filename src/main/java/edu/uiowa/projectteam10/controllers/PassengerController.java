@@ -28,7 +28,8 @@ public class PassengerController {
         if(!checkAccess()){
             return "redirect:/login";
         }
-        List<Ride> rides = this.rideService.getRidesByRoute(routeName);
+        Integer rideID = userService.getRideIdFromUser(userService.getCurrentUser().getUserName());
+        List<Ride> rides = this.rideService.getRidesByRoute(routeName, rideID);
         model.addAttribute("availableRides", rides);
         return "rides";
     }
