@@ -56,6 +56,18 @@ public class PassengerController {
         model.addAttribute("availableRoutes", availableRoutes);
         return "routes";
     }
+
+    @GetMapping("/passenger/myRides")
+    public String myRidesPage(Model model){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
+        Integer rideID = userService.getRideIdFromUser(userService.getCurrentUser().getUserName());
+        List<Ride> passengerRides = this.rideService.getRidesByID(rideID);
+        model.addAttribute("passengerRides", passengerRides);
+        return "myRides";
+    }
+
     private boolean checkAccess(){
         try {
             String currentUser = userService.getCurrentUser().getUserName();

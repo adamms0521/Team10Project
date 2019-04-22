@@ -49,6 +49,22 @@ public class RidesServiceImp implements RidesService {
     }
 
     @Override
+    public List<Ride> getRidesByID(Integer rideID){
+        Iterable<Ride> rides = this.ridesRepository.findAll();
+        List<Ride> associatedRideID = new ArrayList<>();
+        for(Ride ride: rides){
+            try {
+                if (ride.getRideID().equals(rideID)) {
+                    associatedRideID.add(ride);
+                }
+            } catch (NullPointerException e){
+                e.getStackTrace();
+            }
+        }
+        return associatedRideID;
+    }
+
+    @Override
     public List<Ride> getEmptyRides(){
         Iterable<Ride> rides = this.ridesRepository.findAll();
         List<Ride> allrides = new ArrayList<>();

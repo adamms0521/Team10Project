@@ -22,6 +22,8 @@ public interface UserService {
 
     String getRoleFromUserName(LoginForm loginForm);
 
+    Integer getRideIdFromUser(String userName);
+
     void setCurrentUser(User user);
 
     User getCurrentUser();

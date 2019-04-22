@@ -24,7 +24,7 @@ public class User {
     @NotNull
     private String name;
 
-    private Integer assignedRideID;
+    private Integer ride_id;
 
     public User(String username, String password, String role) {
         this.username = username;
@@ -56,12 +56,21 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getRide_id() {
+        return ride_id;
+    }
+
+    public void setRide_id(Integer ride_id) {
+        this.ride_id = ride_id;
     }
 
     public String user(Model model, Principal principal){

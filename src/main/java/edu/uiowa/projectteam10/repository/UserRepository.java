@@ -14,8 +14,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query("SELECT role FROM user WHERE username = :username")
     String findRolebyName(@Param("username") String username);
 
+    @Query("SELECT ride_id FROM user WHERE username = :username")
+    Integer findRideIDbyName(@Param("username") String username);
+
     @Transactional
     @Modifying
-    @Query("UPDATE user SET assignedRideID = :rideid where username = :name")
+    @Query("UPDATE user SET ride_id = :rideid where username = :name")
     void assignUsertoRide(@Param("rideid") Integer rideid, @Param("name") String name);
 }

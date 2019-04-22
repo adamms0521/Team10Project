@@ -100,6 +100,11 @@ public class UserServiceImp implements UserService {
     public void assignRideToUser(Integer id, String name) {
         userRepository.assignUsertoRide(id, name);
     }
+
+    @Override
+    public Integer getRideIdFromUser(String userName){
+        return userRepository.findRideIDbyName(userName);
+    }
 }
 
 
