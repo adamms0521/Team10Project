@@ -58,8 +58,8 @@ public class AdminController extends WebMvcConfigurerAdapter {
         if(bindingResult.hasErrors()){
             return "createride";
         }
-        ridesService.setPrice(routeName);
         ridesService.saveForm(rideForm);
+        ridesService.setPrice(routeName);
         return "redirect:/admin";
     }
 
