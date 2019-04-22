@@ -19,5 +19,10 @@ public interface RidesService {
     void assignDriver(Integer id, String name);
 
     String getRoutebyRide(Integer id);
+
+    void setPrice(String name);
+
+    Double getBilling(String routename);
+
 }
 

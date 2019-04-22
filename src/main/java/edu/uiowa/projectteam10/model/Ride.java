@@ -23,7 +23,7 @@ public class Ride {
     @NotBlank
     private String endTime;
 
-    private Double bill;
+    private String bill;
 
     @NotBlank
     public String getStartTime() {
@@ -67,12 +67,10 @@ public class Ride {
     public void setRideID(Integer rideID) {
         this.rideID = rideID;
     }
-
-    public Double getBill() {
-        return bill;
-    }
-
-    public void setBill(Double bill) {
+    public void setBill(String bill) {
         this.bill = bill;
+    }
+    public String getBill(){
+        return this.bill;
     }
 }
