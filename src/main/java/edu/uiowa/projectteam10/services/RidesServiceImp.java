@@ -119,11 +119,15 @@ public class RidesServiceImp implements RidesService {
                 }
             } catch (NullPointerException e) {
                 e.getStackTrace();
-                allrides.add(ride);
             }
         }
         return allrides;
 
+    }
+
+    @Override
+    public void deleteRideFromDriver(Integer RideID) {
+        ridesRepository.deleteRideFromDriver(RideID);
     }
 
 }

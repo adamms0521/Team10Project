@@ -49,6 +49,14 @@ public class DriverController {
         model.addAttribute("driverRides", rides);
         return "myDrives";
     }
+    @PostMapping("/driver/myDrives")
+    public String unassignRide(@RequestParam("RideRemoval") Integer rideID){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
+        rideService.deleteRideFromDriver(rideID);
+        return "redirect:/driver";
+    }
     private boolean checkAccess(){
         try {
             String currentUser = userService.getCurrentUser().getUserName();

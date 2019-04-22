@@ -26,5 +26,8 @@ public interface RidesService {
     Double getBilling(String routename);
 
     List<Ride> getRidesForDriver(String username);
+
+    void deleteRideFromDriver(Integer RideID);
+
 }
 

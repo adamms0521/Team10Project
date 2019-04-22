@@ -23,4 +23,9 @@ public interface RidesRepository extends JpaRepository<Ride, Integer> {
     @Modifying
     @Query("UPDATE rides SET bill = :price WHERE route_name = :route_name")
     void updatePrice(@Param("price") String price, @Param("route_name") String route_name);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE rides SET driver = null WHERE rideid = :ride_id")
+    void deleteRideFromDriver(@Param("ride_id") Integer ride_id);
 }
