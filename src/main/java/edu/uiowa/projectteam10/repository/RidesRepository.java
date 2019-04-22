@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.method.P;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface RidesRepository extends JpaRepository<Ride, Integer> {
     @Transactional
     @Modifying

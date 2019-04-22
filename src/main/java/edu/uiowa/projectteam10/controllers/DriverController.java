@@ -26,15 +26,12 @@ public class DriverController {
         }
         List<Ride> rides = this.rideService.getEmptyRides();
         model.addAttribute("unselectRides", rides);
-        /*UserDetails userLogged = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();*/
         return "driverRides";
     }
     @PostMapping("/driver/driverRides")
     public String update(@RequestParam("selection") Integer selection, Model model, HttpServletRequest request){
         rideService.assignDriver(selection, userService.getCurrentUser().getUserName());
-        return "driver";
+        return "redirect:/driver";
     }
     @GetMapping("/driver")
     public String getDriver(){
@@ -42,6 +39,15 @@ public class DriverController {
             return "redirect:/login";
         }
         return "driver";
+    }
+    @GetMapping("/driver/myDrives")
+    public String myDrives(Model model){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
+        List<Ride> rides = rideService.getRidesForDriver(userService.getCurrentUser().getUserName());
+        model.addAttribute("driverRides", rides);
+        return "myDrives";
     }
     private boolean checkAccess(){
         try {

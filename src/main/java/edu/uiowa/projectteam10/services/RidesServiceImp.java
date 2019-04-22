@@ -108,4 +108,22 @@ public class RidesServiceImp implements RidesService {
         return bill*0.25;
     }
 
+    @Override
+    public List<Ride> getRidesForDriver(String username) {
+        Iterable<Ride> rides = ridesRepository.findAll();
+        List<Ride> allrides = new ArrayList<>();
+        for (Ride ride : rides) {
+            try {
+                if (ride.getDriver().equals(username)) {
+                    allrides.add(ride);
+                }
+            } catch (NullPointerException e) {
+                e.getStackTrace();
+                allrides.add(ride);
+            }
+        }
+        return allrides;
+
+    }
+
 }
