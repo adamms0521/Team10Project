@@ -112,6 +112,11 @@ public class UserServiceImp implements UserService {
     public Integer getRideIdFromUser(String userName){
         return userRepository.findRideIDbyName(userName);
     }
+
+    @Override
+    public void deleteRideFromUser(String username, Integer rideID){
+        userRepository.deleteRideFromUser(username);
+    }
 }
 
 

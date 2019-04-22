@@ -22,6 +22,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query("UPDATE user SET ride_id = :rideid where username = :name")
     void assignUsertoRide(@Param("rideid") Integer rideid, @Param("name") String name);
 
+    @Transactional
+    @Modifying
+    @Query("UPDATE user SET ride_id = 0 where username = :name")
+    void deleteRideFromUser(@Param("name") String username);
+
     @Query("SELECT ride_id FROM user WHERE username = :username")
     Integer getRideIdByName(@Param("username") String username);
 }

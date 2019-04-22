@@ -28,7 +28,8 @@ public class PassengerController {
         if(!checkAccess()){
             return "redirect:/login";
         }
-        List<Ride> rides = this.rideService.getRidesByRoute(routeName);
+        Integer rideID = userService.getRideIdFromUser(userService.getCurrentUser().getUserName());
+        List<Ride> rides = this.rideService.getRidesByRoute(routeName, rideID);
         model.addAttribute("availableRides", rides);
         return "rides";
     }
@@ -67,6 +68,16 @@ public class PassengerController {
         model.addAttribute("passengerRides", passengerRides);
         return "myRides";
     }
+
+    @PostMapping("/passenger/myRides")
+    public String unassignRide(@RequestParam("RideRemoval") Integer rideID){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
+        userService.deleteRideFromUser(userService.getCurrentUser().getUserName(), rideID);
+        return "redirect:/passenger";
+    }
+
 
     private boolean checkAccess(){
         try {
