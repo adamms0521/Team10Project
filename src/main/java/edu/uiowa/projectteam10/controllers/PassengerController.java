@@ -70,7 +70,7 @@ public class PassengerController {
     }
 
     @PostMapping("/passenger/myRides")
-    public String unassignRide(@RequestParam("removeRide") Integer rideID){
+    public String unassignRide(@RequestParam("RideRemoval") Integer rideID){
         if(!checkAccess()){
             return "redirect:/login";
         }

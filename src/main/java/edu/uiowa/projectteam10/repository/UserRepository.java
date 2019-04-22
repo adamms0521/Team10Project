@@ -24,7 +24,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE user SET ride_id = :null where username = :name")
+    @Query("UPDATE user SET ride_id = 0 where username = :name")
     void deleteRideFromUser(@Param("name") String username);
 
     @Query("SELECT ride_id FROM user WHERE username = :username")
