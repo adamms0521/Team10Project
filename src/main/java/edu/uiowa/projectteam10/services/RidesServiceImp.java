@@ -101,12 +101,7 @@ public class RidesServiceImp implements RidesService {
         String finalBill = "$" + bill;
         Iterable<Ride> rides = this.ridesRepository.findAll();
         for(Ride ride: rides){
-            try {
-                if (ride.getBill().isEmpty()) {
-                    ridesRepository.updatePrice(finalBill, ride.getRideID());
-                }
-            } catch (NullPointerException e){
-                e.getStackTrace();
+            if (ride.getRouteName().equals(routeName)) {
                 ridesRepository.updatePrice(finalBill, ride.getRideID());
             }
         }
