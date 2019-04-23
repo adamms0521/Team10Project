@@ -47,8 +47,8 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public boolean passwordsMatch(RegisterForm registerForm) {
-        if(registerForm.getPassword().equals(registerForm.getReenterpassword())){
+    public boolean passwordsMatch(String password, String reenterpassword) {
+        if(password.equals(reenterpassword)){
             return true;
         }
         return false;
@@ -116,6 +116,19 @@ public class UserServiceImp implements UserService {
     @Override
     public void deleteRideFromUser(String username, Integer rideID){
         userRepository.deleteRideFromUser(username);
+    }
+
+    @Override
+    public boolean checkIfNameAndUserNameCorrect(String username, String name) {
+        if(userRepository.exists(username) && userRepository.getNameByUserName(username).equals(name)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void updatePassword(String username, String password) {
+        userRepository.updatePassword(username, passwordEncoder.encode(password));
     }
 }
 

@@ -18,7 +18,7 @@ public interface UserService {
 
     boolean userExists(RegisterForm registerForm);
 
-    boolean passwordsMatch(RegisterForm registerForm);
+    boolean passwordsMatch(String password, String reenterpassword);
 
     String getName(User user);
 
@@ -37,4 +37,8 @@ public interface UserService {
     void assignRideToUser(Integer id, String name);
 
     void deleteRideFromUser(String username, Integer RideID);
+
+    boolean checkIfNameAndUserNameCorrect(String username, String name);
+
+    void updatePassword(String username, String password);
 }

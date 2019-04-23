@@ -32,4 +32,12 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Query("SELECT ride_id FROM user WHERE username = :username")
     Integer getRideIdByName(@Param("username") String username);
+
+    @Query("SELECT name FROM user WHERE username = :username")
+    String getNameByUserName(@Param("username") String username);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE user SET password = :password where username = :username")
+    void updatePassword(@Param("username") String username, @Param("password") String password);
 }
