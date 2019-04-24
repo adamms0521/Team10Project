@@ -1,16 +1,10 @@
 package edu.uiowa.projectteam10.model;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.ui.Model;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.security.Principal;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-
 
 @Entity(name = "user")
 public class User {

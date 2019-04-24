@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 @Service
 public class UserServiceImp implements UserService {
     private PasswordEncoder passwordEncoder;
@@ -52,11 +50,6 @@ public class UserServiceImp implements UserService {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public String getName(User user) {
-        return user.getName();
     }
 
     @Override

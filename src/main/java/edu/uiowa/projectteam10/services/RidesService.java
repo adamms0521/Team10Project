@@ -2,8 +2,6 @@ package edu.uiowa.projectteam10.services;
 
 import edu.uiowa.projectteam10.forms.CreateRideForm;
 import edu.uiowa.projectteam10.model.Ride;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface RidesService {

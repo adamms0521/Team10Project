@@ -5,9 +5,6 @@ import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
-
 public interface UserService {
 
     User save(User user);
@@ -20,7 +17,6 @@ public interface UserService {
 
     boolean passwordsMatch(String password, String reenterpassword);
 
-    String getName(User user);
 
     String getRoleFromUserName(LoginForm loginForm);
 

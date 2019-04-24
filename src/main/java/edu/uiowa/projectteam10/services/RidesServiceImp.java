@@ -5,8 +5,6 @@ import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.repository.RidesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.xml.ws.soap.Addressing;
 import java.util.ArrayList;
 import java.util.List;
 
