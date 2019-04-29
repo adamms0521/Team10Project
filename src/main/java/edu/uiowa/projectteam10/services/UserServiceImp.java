@@ -110,6 +110,11 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public Date getRideDateFromCurrentUser(String userName){
+        return userRepository.getUserRideDate(userName);
+    }
+
+    @Override
     public void deleteRideFromUser(String username){
         userRepository.deleteRideFromUser(username);
     }

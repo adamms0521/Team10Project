@@ -5,6 +5,8 @@ import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 
+import java.util.Date;
+
 public interface UserService {
 
     User save(User user);
@@ -29,6 +31,8 @@ public interface UserService {
     User getUser(LoginForm loginForm);
 
     String getRole(String userName);
+
+    Date getRideDateFromCurrentUser(String userName);
 
     void assignRideToUser(Integer id, String name);
 

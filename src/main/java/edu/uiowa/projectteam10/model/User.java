@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.security.Principal;
-import java.text.DateFormat;
 import java.util.Date;
 
 @Entity(name = "user")
@@ -22,7 +21,7 @@ public class User {
 
     private Integer ride_id;
 
-    private Date rideDate;
+    private Date ride_date;
 
     public User(String username, String password, String role) {
         this.username = username;
@@ -72,11 +71,11 @@ public class User {
     }
 
     public Date getRideDate() {
-        return rideDate;
+        return ride_date;
     }
 
     public void setRideDate(Date rideDate) {
-        this.rideDate = rideDate;
+        this.ride_date = rideDate;
     }
 
     public String user(Model model, Principal principal){

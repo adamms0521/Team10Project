@@ -37,6 +37,9 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query("SELECT name FROM user WHERE username = :username")
     String getNameByUserName(@Param("username") String username);
 
+    @Query("SELECT ride_date FROM user WHERE username = :username")
+    Date getUserRideDate(@Param("username") String username);
+
     @Transactional
     @Modifying
     @Query("UPDATE user SET password = :password where username = :username")

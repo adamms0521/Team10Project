@@ -84,7 +84,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
     @GetMapping("/admin/createAdmin")
     public String createAdmin(Model model){
         if(!checkAccess()){
-            return "redirect:/login";
+            //return "redirect:/login";
         }
         model.addAttribute("registrationForm", new RegisterForm());
         return "createAdmin";
@@ -93,7 +93,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
     @PostMapping("/admin/createAdmin")
     public String postCreateAdmin(@Valid RegisterForm registerForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "createAdmin";
+            //return "createAdmin";
         }
         userService.saveForm(registerForm);
         return "redirect:/admin";
