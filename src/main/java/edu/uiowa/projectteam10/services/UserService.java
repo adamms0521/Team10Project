@@ -5,8 +5,7 @@ import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
 import edu.uiowa.projectteam10.model.User;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
+import java.util.Date;
 
 public interface UserService {
 
@@ -18,9 +17,8 @@ public interface UserService {
 
     boolean userExists(RegisterForm registerForm);
 
-    boolean passwordsMatch(RegisterForm registerForm);
+    boolean passwordsMatch(String password, String reenterpassword);
 
-    String getName(User user);
 
     String getRoleFromUserName(LoginForm loginForm);
 
@@ -34,7 +32,13 @@ public interface UserService {
 
     String getRole(String userName);
 
+    Date getRideDateFromCurrentUser(String userName);
+
     void assignRideToUser(Integer id, String name);
 
-    void deleteRideFromUser(String username, Integer RideID);
+    void deleteRideFromUser(String username);
+
+    boolean checkIfNameAndUserNameCorrect(String username, String name);
+
+    void updatePassword(String username, String password);
 }

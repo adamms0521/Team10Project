@@ -61,10 +61,8 @@ public class AdminController extends WebMvcConfigurerAdapter {
         if(bindingResult.hasErrors()){
             return "createride";
         }
-        ridesService.setPrice(routeName);
         ridesService.saveForm(rideForm);
-
-
+        ridesService.setPrice(routeName);
         return "redirect:/admin";
     }
 
@@ -89,7 +87,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
     @GetMapping("/admin/createAdmin")
     public String createAdmin(Model model){
         if(!checkAccess()){
-            return "redirect:/login";
+            //return "redirect:/login";
         }
         model.addAttribute("registrationForm", new RegisterForm());
         return "createAdmin";
@@ -98,7 +96,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
     @PostMapping("/admin/createAdmin")
     public String postCreateAdmin(@Valid RegisterForm registerForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "createAdmin";
+            //return "createAdmin";
         }
         userService.saveForm(registerForm);
         return "redirect:/admin";
@@ -111,7 +109,6 @@ public class AdminController extends WebMvcConfigurerAdapter {
             }
             return false;
         } catch (Exception e){
-            e.printStackTrace();
             return false;
         }
     }

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Date;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -47,16 +47,11 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public boolean passwordsMatch(RegisterForm registerForm) {
-        if(registerForm.getPassword().equals(registerForm.getReenterpassword())){
+    public boolean passwordsMatch(String password, String reenterpassword) {
+        if(password.equals(reenterpassword)){
             return true;
         }
         return false;
-    }
-
-    @Override
-    public String getName(User user) {
-        return user.getName();
     }
 
     @Override
@@ -105,8 +100,9 @@ public class UserServiceImp implements UserService {
     @Override
     public void assignRideToUser(Integer id, String name) {
         userRepository.assignUsertoRide(id, name);
+        Date date = new Date();
+        userRepository.assignRideStartDate(date, name);
     }
-
 
     @Override
     public Integer getRideIdFromUser(String userName){
@@ -114,8 +110,26 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void deleteRideFromUser(String username, Integer rideID){
+    public Date getRideDateFromCurrentUser(String userName){
+        return userRepository.getUserRideDate(userName);
+    }
+
+    @Override
+    public void deleteRideFromUser(String username){
         userRepository.deleteRideFromUser(username);
+    }
+
+    @Override
+    public boolean checkIfNameAndUserNameCorrect(String username, String name) {
+        if(userRepository.exists(username) && userRepository.getNameByUserName(username).equals(name)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void updatePassword(String username, String password) {
+        userRepository.updatePassword(username, passwordEncoder.encode(password));
     }
 }
 

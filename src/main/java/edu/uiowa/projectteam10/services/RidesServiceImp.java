@@ -5,8 +5,6 @@ import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.repository.RidesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.xml.ws.soap.Addressing;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,13 +97,40 @@ public class RidesServiceImp implements RidesService {
     public void setPrice(String routeName) {
         Double bill = getBilling(routeName);
         String finalBill = "$" + bill;
-        ridesRepository.updatePrice(finalBill, routeName);
+        Iterable<Ride> rides = this.ridesRepository.findAll();
+        for(Ride ride: rides){
+            if (ride.getRouteName().equals(routeName)) {
+                ridesRepository.updatePrice(finalBill, ride.getRideID());
+            }
+        }
     }
 
     @Override
     public Double getBilling(String routename) {
         Double bill = routeService.getDistanceByName(routename);
         return bill*0.25;
+    }
+
+    @Override
+    public List<Ride> getRidesForDriver(String username) {
+        Iterable<Ride> rides = ridesRepository.findAll();
+        List<Ride> allrides = new ArrayList<>();
+        for (Ride ride : rides) {
+            try {
+                if (ride.getDriver().equals(username)) {
+                    allrides.add(ride);
+                }
+            } catch (NullPointerException e) {
+                e.getStackTrace();
+            }
+        }
+        return allrides;
+
+    }
+
+    @Override
+    public void deleteRideFromDriver(Integer RideID) {
+        ridesRepository.deleteRideFromDriver(RideID);
     }
 
 }

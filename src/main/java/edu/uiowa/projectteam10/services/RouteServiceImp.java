@@ -1,7 +1,6 @@
 package edu.uiowa.projectteam10.services;
 
 import edu.uiowa.projectteam10.forms.CreateRouteForm;
-import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.model.Route;
 import edu.uiowa.projectteam10.repository.RoutesRepository;
 import org.springframework.stereotype.Service;
@@ -42,11 +41,6 @@ public class RouteServiceImp implements RouteService {
         return allroutes;
     }
 
-    @Override
-    public List<String> getRouteInfo() {
-       // return routesRepository.RightJoinRidesRoute();
-        return null;
-    }
 
     @Override
     public Double getDistanceByName(String name) {

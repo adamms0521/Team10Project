@@ -1,14 +1,7 @@
 package edu.uiowa.projectteam10.model;
 
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.Set;
-
-import static javax.persistence.CascadeType.ALL;
 
 @Entity(name = "routes")
 public class Route {

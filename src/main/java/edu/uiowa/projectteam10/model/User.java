@@ -1,16 +1,11 @@
 package edu.uiowa.projectteam10.model;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.ui.Model;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.security.Principal;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-
+import java.util.Date;
 
 @Entity(name = "user")
 public class User {
@@ -25,6 +20,8 @@ public class User {
     private String name;
 
     private Integer ride_id;
+
+    private Date ride_date;
 
     public User(String username, String password, String role) {
         this.username = username;
@@ -71,6 +68,14 @@ public class User {
 
     public void setRide_id(Integer ride_id) {
         this.ride_id = ride_id;
+    }
+
+    public Date getRideDate() {
+        return ride_date;
+    }
+
+    public void setRideDate(Date rideDate) {
+        this.ride_date = rideDate;
     }
 
     public String user(Model model, Principal principal){

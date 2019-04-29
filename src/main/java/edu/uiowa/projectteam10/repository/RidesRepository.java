@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.access.method.P;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface RidesRepository extends JpaRepository<Ride, Integer> {
@@ -19,6 +18,11 @@ public interface RidesRepository extends JpaRepository<Ride, Integer> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE rides SET bill = :price WHERE route_name = :route_name")
-    void updatePrice(@Param("price") String price, @Param("route_name") String route_name);
+    @Query("UPDATE rides SET bill = :bill WHERE rideid = :rideid")
+    void updatePrice(@Param("bill") String bill, @Param("rideid") Integer rideid);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE rides SET driver = null WHERE rideid = :ride_id")
+    void deleteRideFromDriver(@Param("ride_id") Integer ride_id);
 }

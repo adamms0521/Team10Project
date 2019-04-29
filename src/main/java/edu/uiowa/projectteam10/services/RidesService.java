@@ -2,7 +2,6 @@ package edu.uiowa.projectteam10.services;
 
 import edu.uiowa.projectteam10.forms.CreateRideForm;
 import edu.uiowa.projectteam10.model.Ride;
-
 import java.util.List;
 
 public interface RidesService {
@@ -23,6 +22,10 @@ public interface RidesService {
     void setPrice(String name);
 
     Double getBilling(String routename);
+
+    List<Ride> getRidesForDriver(String username);
+
+    void deleteRideFromDriver(Integer RideID);
 
 }
 

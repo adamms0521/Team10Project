@@ -19,26 +19,44 @@ public class DriverController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/driver")
+    @GetMapping("/driver/driverRides")
     public String driverPage(Model model){
         if(!checkAccess()){
             return "redirect:/login";
         }
         List<Ride> rides = this.rideService.getEmptyRides();
         model.addAttribute("unselectRides", rides);
-        /*UserDetails userLogged = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();*/
-        return "driver";
+        return "driverRides";
     }
-    @PostMapping("/driver")
+    @PostMapping("/driver/driverRides")
     public String update(@RequestParam("selection") Integer selection, Model model, HttpServletRequest request){
         rideService.assignDriver(selection, userService.getCurrentUser().getUserName());
         return "redirect:/driver";
     }
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
-    public  String currentUserName(Authentication authentication){
-        return authentication.getName(); }
+    @GetMapping("/driver")
+    public String getDriver(){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
+        return "driver";
+    }
+    @GetMapping("/driver/myDrives")
+    public String myDrives(Model model){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
+        List<Ride> rides = rideService.getRidesForDriver(userService.getCurrentUser().getUserName());
+        model.addAttribute("driverRides", rides);
+        return "myDrives";
+    }
+    @PostMapping("/driver/myDrives")
+    public String unassignRide(@RequestParam("RideRemoval") Integer rideID){
+        if(!checkAccess()){
+            return "redirect:/login";
+        }
+        rideService.deleteRideFromDriver(rideID);
+        return "redirect:/driver";
+    }
     private boolean checkAccess(){
         try {
             String currentUser = userService.getCurrentUser().getUserName();
@@ -47,7 +65,6 @@ public class DriverController {
             }
             return false;
         } catch (Exception e){
-            e.printStackTrace();
             return false;
         }
     }

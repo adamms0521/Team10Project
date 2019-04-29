@@ -1,5 +1,6 @@
 package edu.uiowa.projectteam10.controllers;
 
+import edu.uiowa.projectteam10.forms.BillingForm;
 import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.model.Route;
 import edu.uiowa.projectteam10.services.RidesService;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -69,15 +72,31 @@ public class PassengerController {
         return "myRides";
     }
 
-    @PostMapping("/passenger/myRides")
-    public String unassignRide(@RequestParam("RideRemoval") Integer rideID){
+    @GetMapping("/passenger/billing")
+    public String processBilling(@RequestParam("RideRemoval") Integer rideID, Model model){
+        List<Ride> currentRide = rideService.getRidesByID(rideID);
+        String dayPriceString = currentRide.get(0).getBill();
+
+        float dayPrice = Float.parseFloat(dayPriceString.substring(1));
+        Date pastDate = userService.getRideDateFromCurrentUser(userService.getCurrentUser().getUserName());
+        Date currentDate = new Date();
+        int days = currentDate.getDay() - pastDate.getDay();
+        float totalPrice = dayPrice*(days+1);
+
+        BillingForm billingForm = new BillingForm(pastDate, currentDate, dayPrice, totalPrice);
+        model.addAttribute("billingInfo", billingForm);
+
+        return "billing";
+    }
+
+    @PostMapping("/passenger/billing")
+    public String unassignRide(){
         if(!checkAccess()){
             return "redirect:/login";
         }
-        userService.deleteRideFromUser(userService.getCurrentUser().getUserName(), rideID);
+        userService.deleteRideFromUser(userService.getCurrentUser().getUserName());
         return "redirect:/passenger";
     }
-
 
     private boolean checkAccess(){
         try {
@@ -87,7 +106,6 @@ public class PassengerController {
             }
             return false;
         } catch (Exception e){
-            e.printStackTrace();
             return false;
         }
     }
