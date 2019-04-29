@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My Rides</title>
+    <title>Billing</title>
     <style>
         body{
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -32,7 +32,7 @@
             margin: 4px;
             cursor: pointer;
         }
-        .my-ride-form {
+        .bill-form {
             width:960px;
             margin:0 auto;
             border:1px solid #ccc;
@@ -71,30 +71,26 @@
     </style>
 </head>
 <body th:align="center">
-<div class="my-ride-form">
-    <h1>My Rides</h1>
-    <form action="#" th:action='@{/passenger/billing}' method="get" th:object="${passengerRides}">
+<div class="bill-form">
+    <h1>Billing</h1>
+    <form action="#" th:action="@{/passenger/billing}" method="post" th:object="${billingInfo}">
         <table border="2" align="center">
             <tr>
-                <td>Ride Selection</td>
-                <td>Route Name</td>
-                <td>Start Time</td>
-                <td>End Time</td>
-                <td>Driver</td>
-                <td>Price</td>
+                <td>Sign-up Date</td>
+                <td>End Date</td>
+                <td>Price per Day</td>
+                <td>Total Price</td>
             </tr>
-            <tr th:each="ride: ${passengerRides}">
-                <td><input type="radio" name="removeRide" th:name="RideRemoval" th:value="${ride.rideID}"/></td>
-                <td th:text="${ride.routeName}">Ride Name</td>
-                <td th:text="${ride.startTime}">Starting Time</td>
-                <td th:text="${ride.endTime}">Ending Time</td>
-                <td th:text="${ride.driver}">Driver</td>
-                <td th:text="${ride.bill}">Price</td>
+            <tr th:each="info: ${billingInfo}">
+                <td th:text="${info.startDate}">Ride Name</td>
+                <td th:text="${info.endDate}">Starting Time</td>
+                <td th:text="${info.dayPrice}">Ending Time</td>
+                <td th:text="${info.totalPrice}">Driver</td>
             </tr>
         </table>
-        <div align="center"><input type="submit" value="Remove Ride"/></div>
+        <div align="center"><input type="submit" value="Pay Bill"/></div>
+        <a href="/passenger">Back</a>
     </form>
-    <a href="/passenger">Back</a>
 </div>
 </body>
 </html>

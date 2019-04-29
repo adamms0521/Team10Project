@@ -32,7 +32,7 @@ public interface UserService {
 
     void assignRideToUser(Integer id, String name);
 
-    void deleteRideFromUser(String username, Integer RideID);
+    void deleteRideFromUser(String username);
 
     boolean checkIfNameAndUserNameCorrect(String username, String name);
 

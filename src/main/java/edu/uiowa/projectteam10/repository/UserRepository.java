@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 public interface UserRepository extends JpaRepository<User, String> {
     @Query("SELECT password FROM user WHERE username = :username")
     String findPasswordbyName(@Param("username") String username);
@@ -21,6 +23,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Modifying
     @Query("UPDATE user SET ride_id = :rideid where username = :name")
     void assignUsertoRide(@Param("rideid") Integer rideid, @Param("name") String name);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE user set ride_date = :rideDate where username = :name")
+    void assignRideStartDate(@Param("rideDate") Date rideDate, @Param("name") String name);
 
     @Transactional
     @Modifying

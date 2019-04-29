@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class UserServiceImp implements UserService {
     private PasswordEncoder passwordEncoder;
@@ -98,8 +100,9 @@ public class UserServiceImp implements UserService {
     @Override
     public void assignRideToUser(Integer id, String name) {
         userRepository.assignUsertoRide(id, name);
+        Date date = new Date();
+        userRepository.assignRideStartDate(date, name);
     }
-
 
     @Override
     public Integer getRideIdFromUser(String userName){
@@ -107,7 +110,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void deleteRideFromUser(String username, Integer rideID){
+    public void deleteRideFromUser(String username){
         userRepository.deleteRideFromUser(username);
     }
 
