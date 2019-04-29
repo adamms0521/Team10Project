@@ -33,7 +33,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/admin").setViewName("admin");
     }
-
+    //return admin page if user is Admin
     @GetMapping("/admin")
     public String adminPage(){
         if(!checkAccess()){
@@ -41,6 +41,8 @@ public class AdminController extends WebMvcConfigurerAdapter {
         }
         return "admin";
     }
+
+    //return login page if user is not Admin, return createride page
     @GetMapping("/admin/createride")
     public String createRide(Model model){
         if(!checkAccess()){
@@ -52,6 +54,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
         return "createride";
     }
 
+    //
     @PostMapping("/admin/createride")
     public String postCreateRide(CreateRideForm rideForm, @RequestParam("Selection") String routeName, BindingResult bindingResult){
         rideForm.setRouteName(routeName);
