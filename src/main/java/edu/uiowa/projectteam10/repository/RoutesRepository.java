@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+//get route distance
 public interface RoutesRepository extends JpaRepository<Route, String> {
     @Query("SELECT distance FROM routes WHERE route_name = :route_name")
     Double getDistanceByName(@Param("route_name") String route_name);

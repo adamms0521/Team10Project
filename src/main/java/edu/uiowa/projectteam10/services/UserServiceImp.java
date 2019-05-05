@@ -19,6 +19,7 @@ public class UserServiceImp implements UserService {
     private RouteService routeService;
     private User currentUser;
 
+    //user service
     @Lazy
     @Autowired
     public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder, RidesService ridesService, RouteService routeService) {
@@ -37,7 +38,7 @@ public class UserServiceImp implements UserService {
         }
         return false;
     }
-
+    //check if user in registerform
     @Override
     public boolean userExists(RegisterForm registerForm) {
         if(userRepository.exists(registerForm.getUserName())){
@@ -46,6 +47,7 @@ public class UserServiceImp implements UserService {
         return false;
     }
 
+    //match password
     @Override
     public boolean passwordsMatch(String password, String reenterpassword) {
         if(password.equals(reenterpassword)){
@@ -65,6 +67,7 @@ public class UserServiceImp implements UserService {
         return user;
     }
 
+    //save register form
     @Override
     public User saveForm(RegisterForm registerForm) {
         User user = new User();

@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 
+//route form
 public class CreateRouteForm {
     @NotBlank
     private String startPlace;

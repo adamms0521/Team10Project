@@ -2,6 +2,7 @@ package edu.uiowa.projectteam10.forms;
 
 import java.util.Date;
 
+//billing form
 public class BillingForm {
     private Date startDate;
     private Date endDate;

@@ -20,7 +20,7 @@ public class RouteServiceImp implements RouteService {
         routesRepository.save(route);
         return route;
     }
-
+    //save route form
     @Override
     public Route saveForm(CreateRouteForm routeForm) {
         Route route = new Route();
@@ -31,6 +31,7 @@ public class RouteServiceImp implements RouteService {
         return save(route);
     }
 
+    //return all routes
     @Override
     public List<Route> getRoutes(){
         Iterable<Route> routes = this.routesRepository.findAll();

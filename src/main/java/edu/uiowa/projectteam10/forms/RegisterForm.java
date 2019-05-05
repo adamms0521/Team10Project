@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Min;
 
-
+//registration form
 public class RegisterForm {
 
     @NotBlank(message = "Need a Name")
