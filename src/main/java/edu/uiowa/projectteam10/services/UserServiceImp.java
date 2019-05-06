@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -44,6 +46,16 @@ public class UserServiceImp implements UserService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<User> getUsers(){
+        Iterable<User> users = this.userRepository.findAll();
+        List<User> allusers = new ArrayList<>();
+        for(User user: users){
+            allusers.add(user);
+        }
+        return allusers;
     }
 
     @Override
