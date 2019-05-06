@@ -1,6 +1,7 @@
 package edu.uiowa.projectteam10.repo;
 
 import edu.uiowa.projectteam10.model.Ride;
+import edu.uiowa.projectteam10.model.Route;
 import edu.uiowa.projectteam10.model.User;
 import edu.uiowa.projectteam10.repository.RidesRepository;
 import edu.uiowa.projectteam10.repository.RoutesRepository;
@@ -48,6 +49,13 @@ public class Team10ProjectApplicationTests {
 		when(ridesRepository.findAll()).thenReturn(Stream.of(new Ride("route", "13:00", "15:00"), new Ride("otherRoute", "8:00", "8:30")).collect(Collectors.toList()));
 		assertEquals(2, ridesService.getRides().size());
 	}
+	@Test
+	public void getRoutesTest(){
+		when(routesRepository.findAll()).thenReturn(Stream.of(new Route("route", "Iowa City", "Cedar Rapids", 35.0), new Route("otherRoute", "Cedar Rapids", "Iowa City", 35.0)).collect(Collectors.toList()));
+		assertEquals(2, routeService.getRoutes().size());
+	}
+
+
 
 
 

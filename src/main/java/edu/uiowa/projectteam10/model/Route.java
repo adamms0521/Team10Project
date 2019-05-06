@@ -17,6 +17,13 @@ public class Route {
 
     @NotNull
     private Double distance;
+    public Route(){}
+    public Route(String routeName, String startPlace, String endPlace, Double distance) {
+        this.routeName = routeName;
+        this.startPlace = startPlace;
+        this.endPlace = endPlace;
+        this.distance = distance;
+    }
 
     public String getRouteName() {
         return routeName;
