@@ -2,6 +2,7 @@ package edu.uiowa.projectteam10.forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+//forgor password form
 public class ForgotPasswordForm {
     @NotBlank
     private String name;
