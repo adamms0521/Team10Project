@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
+import java.time.LocalDateTime;
 
 
 @Controller
@@ -25,7 +26,8 @@ public class LoginController{
     private UserService userService;
     private String currentUserName;
     @RequestMapping({"/", "/homePage"})
-    public String homePage(){
+    public String homePage(Model model){
+        model.addAttribute("home", null);
         userService.setCurrentUser(null);
         currentUserName = null;
         return "homePage";}
