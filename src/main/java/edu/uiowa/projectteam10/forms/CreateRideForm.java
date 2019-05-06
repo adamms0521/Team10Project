@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 
+//ride form
 public class CreateRideForm {
 
     @NotBlank

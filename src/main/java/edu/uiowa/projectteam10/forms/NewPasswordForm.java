@@ -2,6 +2,7 @@ package edu.uiowa.projectteam10.forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+//new password form
 public class NewPasswordForm {
     @NotBlank
     private String password;

@@ -3,9 +3,11 @@ package edu.uiowa.projectteam10.services;
 
 import edu.uiowa.projectteam10.forms.LoginForm;
 import edu.uiowa.projectteam10.forms.RegisterForm;
+import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.model.User;
 
 import java.util.Date;
+import java.util.List;
 
 public interface UserService {
 
@@ -19,12 +21,13 @@ public interface UserService {
 
     boolean passwordsMatch(String password, String reenterpassword);
 
-
     String getRoleFromUserName(LoginForm loginForm);
 
     Integer getRideIdFromUser(String userName);
 
     void setCurrentUser(User user);
+
+    List<User> getUsers();
 
     User getCurrentUser();
 

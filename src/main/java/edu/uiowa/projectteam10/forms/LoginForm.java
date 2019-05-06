@@ -2,7 +2,7 @@ package edu.uiowa.projectteam10.forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-
+//login form
 public class LoginForm {
     @NotBlank(message = "Enter a UserName")
     private String userName;

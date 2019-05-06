@@ -27,8 +27,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
-
     }
+
     public User(){}
     public String getUserName() {
         return username;

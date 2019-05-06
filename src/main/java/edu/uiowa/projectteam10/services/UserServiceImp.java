@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -19,6 +21,7 @@ public class UserServiceImp implements UserService {
     private RouteService routeService;
     private User currentUser;
 
+    //user service
     @Lazy
     @Autowired
     public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder, RidesService ridesService, RouteService routeService) {
@@ -37,13 +40,24 @@ public class UserServiceImp implements UserService {
         }
         return false;
     }
-
+    //check if user in registerform
     @Override
     public boolean userExists(RegisterForm registerForm) {
         if(userRepository.exists(registerForm.getUserName())){
             return true;
         }
         return false;
+    }
+
+    //match password
+    @Override
+    public List<User> getUsers(){
+        Iterable<User> users = this.userRepository.findAll();
+        List<User> allusers = new ArrayList<>();
+        for(User user: users){
+            allusers.add(user);
+        }
+        return allusers;
     }
 
     @Override
@@ -65,6 +79,7 @@ public class UserServiceImp implements UserService {
         return user;
     }
 
+    //save register form
     @Override
     public User saveForm(RegisterForm registerForm) {
         User user = new User();

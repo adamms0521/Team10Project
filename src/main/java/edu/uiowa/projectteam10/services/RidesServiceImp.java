@@ -18,12 +18,13 @@ public class RidesServiceImp implements RidesService {
         this.ridesRepository = ridesRepository;
     }
 
+
     @Override
     public Ride save(Ride rides) {
         ridesRepository.save(rides);
         return rides;
     }
-
+    //save ride info
     @Override
     public Ride saveForm(CreateRideForm rideForm) {
         Ride ride = new Ride();
@@ -34,6 +35,7 @@ public class RidesServiceImp implements RidesService {
         return ride;
     }
 
+    //get all rides with same rideid
     @Override
     public List<Ride> getRidesByRoute(String routeName, Integer currentRide){
         Iterable<Ride> rides = this.ridesRepository.findAll();
@@ -50,6 +52,7 @@ public class RidesServiceImp implements RidesService {
         return allrides;
     }
 
+    //return all rides by ridesid
     @Override
     public List<Ride> getRidesByID(Integer rideID){
         Iterable<Ride> rides = this.ridesRepository.findAll();
@@ -66,6 +69,7 @@ public class RidesServiceImp implements RidesService {
         return associatedRideID;
     }
 
+    //get all rides without driver
     @Override
     public List<Ride> getEmptyRides(){
         Iterable<Ride> rides = this.ridesRepository.findAll();
@@ -83,16 +87,19 @@ public class RidesServiceImp implements RidesService {
         return allrides;
     }
 
+    //assign driver
     @Override
     public void assignDriver(Integer id, String name) {
         ridesRepository.assignDriver(id, name);
     }
 
+    //get route by ride
     @Override
     public String getRoutebyRide(Integer id) {
         return ridesRepository.getRoutebyRideID(id);
     }
 
+    //set price to route
     @Override
     public void setPrice(String routeName) {
         Double bill = getBilling(routeName);
@@ -105,12 +112,13 @@ public class RidesServiceImp implements RidesService {
         }
     }
 
+    //billing
     @Override
     public Double getBilling(String routename) {
         Double bill = routeService.getDistanceByName(routename);
         return bill*0.25;
     }
-
+    //return rides with driver usename
     @Override
     public List<Ride> getRidesForDriver(String username) {
         Iterable<Ride> rides = ridesRepository.findAll();

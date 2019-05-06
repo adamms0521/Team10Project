@@ -54,7 +54,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
         return "createride";
     }
 
-    //
+    //getting ride form
     @PostMapping("/admin/createride")
     public String postCreateRide(CreateRideForm rideForm, @RequestParam("Selection") String routeName, BindingResult bindingResult){
         rideForm.setRouteName(routeName);
@@ -66,6 +66,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
         return "redirect:/admin";
     }
 
+    //return login page if user is not Admin, return createroute page
     @GetMapping("/admin/createroute")
     private String createRoute(Model model){
         if(!checkAccess()){
@@ -75,6 +76,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
         return "createroute";
     }
 
+    //getting route form
     @PostMapping("/admin/createroute")
     public String postCreateRoute(@Valid CreateRouteForm routeForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
@@ -84,6 +86,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
         return "redirect:/admin";
     }
 
+    //return login page if user is not Admin, return createAdmin page
     @GetMapping("/admin/createAdmin")
     public String createAdmin(Model model){
         if(!checkAccess()){
@@ -93,6 +96,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
         return "createAdmin";
     }
 
+    //getting admin form
     @PostMapping("/admin/createAdmin")
     public String postCreateAdmin(@Valid RegisterForm registerForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
@@ -101,6 +105,7 @@ public class AdminController extends WebMvcConfigurerAdapter {
         userService.saveForm(registerForm);
         return "redirect:/admin";
     }
+    //check if currentUser is Admin, return False if not Admin
     private boolean checkAccess(){
         try {
             String currentUser = userService.getCurrentUser().getUserName();

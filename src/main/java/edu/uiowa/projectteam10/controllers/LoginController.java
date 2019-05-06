@@ -25,18 +25,21 @@ public class LoginController{
     @Autowired
     private UserService userService;
     private String currentUserName;
+
+    //set current user
     @RequestMapping({"/", "/homePage"})
     public String homePage(Model model){
         model.addAttribute("home", null);
         userService.setCurrentUser(null);
         currentUserName = null;
         return "homePage";}
-
+    //login
     @GetMapping("/login")
     public String login(Model model, HttpSession session) {
         return "login";
     }
 
+    //login as specific role, or return to home
     @PostMapping("/login")
     public String loginPost(@Valid LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request){
         if(bindingResult.hasErrors()){
@@ -59,12 +62,14 @@ public class LoginController{
         return "home";
     }
 
+    //return registration page
     @GetMapping("/registration")
     public String register(Model model) {
         model.addAttribute("registerForm", new RegisterForm());
         return "registration";
     }
 
+    //save registration info
     @PostMapping("/registration")
     public String addUser(@Valid RegisterForm registerForm, BindingResult bindingResult) {
         if(bindingResult.hasErrors() || userService.userExists(registerForm) || !userService.passwordsMatch(registerForm.getPassword(),registerForm.getReenterpassword())){
@@ -75,16 +80,20 @@ public class LoginController{
         return "home";
     }
 
+    //return home
     @GetMapping("/home")
     public String goHome(Model model, Principal principal){
         return "home";
     }
 
+    //return forgotpassword page
     @GetMapping("/forgotpassword")
     public String forgotPassword(Model model){
         model.addAttribute("forgotPassword", new ForgotPasswordForm());
         return "forgotpassword";
     }
+
+    //forgot password
     @PostMapping("/forgotpassword")
     public String postPassword(@Valid ForgotPasswordForm forgotPasswordForm, BindingResult bindingResult){
         if(bindingResult.hasErrors() || !userService.checkIfNameAndUserNameCorrect(forgotPasswordForm.getUsername(),forgotPasswordForm.getName())){
@@ -93,6 +102,8 @@ public class LoginController{
         currentUserName = forgotPasswordForm.getUsername();
         return "newpassword";
     }
+
+    //new password
     @GetMapping("/newpassword")
     public void newPassword(Model model){
         model.addAttribute("newpassword", new NewPasswordForm());

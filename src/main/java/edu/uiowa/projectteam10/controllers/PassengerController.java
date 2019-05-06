@@ -26,6 +26,7 @@ public class PassengerController {
     @Autowired
     private RouteService routeService;
 
+    //show rides
     @GetMapping("/passenger/routes/rides")
     public String ridesPage(@RequestParam("Selection") String routeName, Model model){
         if(!checkAccess()){
@@ -37,12 +38,14 @@ public class PassengerController {
         return "rides";
     }
 
+    //assign ride to passenger
     @PostMapping("/passenger/routes/rides")
     public String updatePassenger(@RequestParam("RideSelection") Integer rideID){
         userService.assignRideToUser(rideID, userService.getCurrentUser().getUserName());
         return "redirect:/passenger";
     }
 
+    //return passenger page
     @GetMapping("/passenger")
     public String passengerPage() {
         if(!checkAccess()){
@@ -51,6 +54,7 @@ public class PassengerController {
         return "passenger";
     }
 
+    //return routes page
     @GetMapping("/passenger/routes")
     public String routesPage(Model model){
         if(!checkAccess()){
@@ -61,6 +65,7 @@ public class PassengerController {
         return "routes";
     }
 
+    //return my rides page
     @GetMapping("/passenger/myRides")
     public String myRidesPage(Model model){
         if(!checkAccess()){
@@ -72,6 +77,7 @@ public class PassengerController {
         return "myRides";
     }
 
+    //calculate billing
     @GetMapping("/passenger/billing")
     public String processBilling(@RequestParam("RideRemoval") Integer rideID, Model model){
         List<Ride> currentRide = rideService.getRidesByID(rideID);
@@ -89,6 +95,7 @@ public class PassengerController {
         return "billing";
     }
 
+    //delete ride from use if paid
     @PostMapping("/passenger/billing")
     public String unassignRide(){
         if(!checkAccess()){
@@ -98,6 +105,7 @@ public class PassengerController {
         return "redirect:/passenger";
     }
 
+    //check user
     private boolean checkAccess(){
         try {
             String currentUser = userService.getCurrentUser().getUserName();

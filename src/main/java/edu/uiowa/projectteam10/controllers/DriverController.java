@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+
+
 @Controller
 public class DriverController {
     @Autowired
@@ -19,6 +21,7 @@ public class DriverController {
     @Autowired
     private UserService userService;
 
+    //return driverRides screen if login as driver
     @GetMapping("/driver/driverRides")
     public String driverPage(Model model){
         if(!checkAccess()){
@@ -28,11 +31,15 @@ public class DriverController {
         model.addAttribute("unselectRides", rides);
         return "driverRides";
     }
+
+    //assign driver
     @PostMapping("/driver/driverRides")
     public String update(@RequestParam("selection") Integer selection, Model model, HttpServletRequest request){
         rideService.assignDriver(selection, userService.getCurrentUser().getUserName());
         return "redirect:/driver";
     }
+
+    //return driver screen
     @GetMapping("/driver")
     public String getDriver(){
         if(!checkAccess()){
@@ -40,6 +47,8 @@ public class DriverController {
         }
         return "driver";
     }
+
+    //return myDrives
     @GetMapping("/driver/myDrives")
     public String myDrives(Model model){
         if(!checkAccess()){
@@ -49,6 +58,8 @@ public class DriverController {
         model.addAttribute("driverRides", rides);
         return "myDrives";
     }
+
+    //delete ride
     @PostMapping("/driver/myDrives")
     public String unassignRide(@RequestParam("RideRemoval") Integer rideID){
         if(!checkAccess()){
@@ -57,6 +68,8 @@ public class DriverController {
         rideService.deleteRideFromDriver(rideID);
         return "redirect:/driver";
     }
+
+    //check driver info
     private boolean checkAccess(){
         try {
             String currentUser = userService.getCurrentUser().getUserName();
