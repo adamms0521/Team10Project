@@ -141,4 +141,14 @@ public class RidesServiceImp implements RidesService {
         ridesRepository.deleteRideFromDriver(RideID);
     }
 
+    @Override
+    public List<Ride> getRides() {
+        Iterable<Ride> rides = this.ridesRepository.findAll();
+        List<Ride> allrides = new ArrayList<>();
+        for(Ride ride: rides){
+            allrides.add(ride);
+        }
+        return allrides;
+    }
+
 }

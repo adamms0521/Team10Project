@@ -24,6 +24,12 @@ public class Ride {
     private String endTime;
 
     private String bill;
+    public Ride(){}
+    public Ride(String routeName, String startTime, String endTime) {
+        this.routeName = routeName;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 
     @NotBlank
     public String getStartTime() {
