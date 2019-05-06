@@ -1,7 +1,12 @@
 package edu.uiowa.projectteam10.repo;
 
+import edu.uiowa.projectteam10.model.Ride;
 import edu.uiowa.projectteam10.model.User;
+import edu.uiowa.projectteam10.repository.RidesRepository;
+import edu.uiowa.projectteam10.repository.RoutesRepository;
 import edu.uiowa.projectteam10.repository.UserRepository;
+import edu.uiowa.projectteam10.services.RidesService;
+import edu.uiowa.projectteam10.services.RouteService;
 import edu.uiowa.projectteam10.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,14 +27,28 @@ public class Team10ProjectApplicationTests {
 
 	@Autowired
 	private UserService service;
+	@Autowired
+	private RidesService ridesService;
+	@Autowired
+	private RouteService routeService;
 
 	@MockBean
 	private UserRepository repository;
-
+	@MockBean
+	private RidesRepository ridesRepository;
+	@MockBean
+	private RoutesRepository routesRepository;
 	@Test
 	public void getUsersTest() {
 		when(repository.findAll()).thenReturn(Stream.of(new User("kim", "help", "Passenger"), new User("sam", "new", "Driver")).collect(Collectors.toList()));
 		assertEquals(2, service.getUsers().size());
 	}
+	@Test
+	public void getRidesTest(){
+		when(ridesRepository.findAll()).thenReturn(Stream.of(new Ride("route", "13:00", "15:00"), new Ride("otherRoute", "8:00", "8:30")).collect(Collectors.toList()));
+		assertEquals(2, ridesService.getRides().size());
+	}
+
+
 
 }
